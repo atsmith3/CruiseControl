@@ -1,0 +1,9 @@
+sv xil_defaultlib "AESL_automem_matA.v"
+sv xil_defaultlib "AESL_automem_matB.v"
+sv xil_defaultlib "AESL_automem_matC.v"
+sv xil_defaultlib "copy_mat.v"
+sv xil_defaultlib "mat_mul_wrap.autotb.v"
+sv xil_defaultlib "mat_mul_wrap.v"
+sv xil_defaultlib "mat_mul_wrap_matBcud.v"
+sv xil_defaultlib "mat_mul_wrap_matCbkb.v"
+

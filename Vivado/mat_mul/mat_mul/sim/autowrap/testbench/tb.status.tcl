@@ -1,0 +1,1 @@
+set ::AESL_AUTOSIM::gTopFileName mat_mul.c_pre.c.tb.c

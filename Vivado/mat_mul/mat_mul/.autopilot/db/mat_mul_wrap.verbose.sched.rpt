@@ -1,0 +1,154 @@
+
+
+================================================================
+== Vivado HLS Report for 'mat_mul_wrap'
+================================================================
+* Date:           Thu Dec 13 22:27:51 2018
+
+* Version:        2017.2 (Build 1909853 on Thu Jun 15 18:55:24 MDT 2017)
+* Project:        mat_mul
+* Solution:       mat_mul
+* Product family: zynq
+* Target device:  xc7z020clg484-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing (ns): 
+    * Summary: 
+    +--------+-------+----------+------------+
+    |  Clock | Target| Estimated| Uncertainty|
+    +--------+-------+----------+------------+
+    |ap_clk  |  10.00|      6.51|        1.25|
+    +--------+-------+----------+------------+
+
++ Latency (clock cycles): 
+    * Summary: 
+    +-------+-------+-------+-------+---------+
+    |    Latency    |    Interval   | Pipeline|
+    |  min  |  max  |  min  |  max  |   Type  |
+    +-------+-------+-------+-------+---------+
+    |  20202|  20202|  20203|  20203|   none  |
+    +-------+-------+-------+-------+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        N/A
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 1
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 0
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states: 2
+* Pipeline: 0
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 
+	2  / true
+2 --> 
+* FSM state operations: 
+
+ <State 1>: 1.77ns
+ST_1: matC_local (8)  [1/1] 0.00ns  loc: mat_mul/mat_mul.c:27
+:4  %matC_local = alloca [10000 x float], align 4
+
+ST_1: matB_local (9)  [1/1] 0.00ns
+:5  %matB_local = alloca [10000 x float], align 4
+
+ST_1: matA_local (10)  [1/1] 0.00ns
+:6  %matA_local = alloca [10000 x float], align 4
+
+ST_1: StgValue_6 (11)  [2/2] 1.77ns  loc: mat_mul/mat_mul.c:32
+:7  call fastcc void @copy_mat([10000 x float]* %matA, [10000 x float]* %matA_local) nounwind
+
+ST_1: StgValue_7 (12)  [2/2] 1.77ns  loc: mat_mul/mat_mul.c:33
+:8  call fastcc void @copy_mat([10000 x float]* %matB, [10000 x float]* %matB_local) nounwind
+
+ST_1: StgValue_8 (13)  [2/2] 1.77ns  loc: mat_mul/mat_mul.c:38
+:9  call fastcc void @copy_mat([10000 x float]* %matC_local, [10000 x float]* %matC) nounwind
+
+
+ <State 2>: 0.00ns
+ST_2: StgValue_9 (4)  [1/1] 0.00ns
+:0  call void (...)* @_ssdm_op_SpecBitsMap([10000 x float]* %matA) nounwind, !map !13
+
+ST_2: StgValue_10 (5)  [1/1] 0.00ns
+:1  call void (...)* @_ssdm_op_SpecBitsMap([10000 x float]* %matB) nounwind, !map !19
+
+ST_2: StgValue_11 (6)  [1/1] 0.00ns
+:2  call void (...)* @_ssdm_op_SpecBitsMap([10000 x float]* %matC) nounwind, !map !23
+
+ST_2: StgValue_12 (7)  [1/1] 0.00ns
+:3  call void (...)* @_ssdm_op_SpecTopModule([13 x i8]* @mat_mul_wrap_str) nounwind
+
+ST_2: StgValue_13 (11)  [1/2] 0.00ns  loc: mat_mul/mat_mul.c:32
+:7  call fastcc void @copy_mat([10000 x float]* %matA, [10000 x float]* %matA_local) nounwind
+
+ST_2: StgValue_14 (12)  [1/2] 0.00ns  loc: mat_mul/mat_mul.c:33
+:8  call fastcc void @copy_mat([10000 x float]* %matB, [10000 x float]* %matB_local) nounwind
+
+ST_2: StgValue_15 (13)  [1/2] 0.00ns  loc: mat_mul/mat_mul.c:38
+:9  call fastcc void @copy_mat([10000 x float]* %matC_local, [10000 x float]* %matC) nounwind
+
+ST_2: StgValue_16 (14)  [1/1] 0.00ns  loc: mat_mul/mat_mul.c:39
+:10  ret void
+
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 10ns, clock uncertainty: 1.25ns.
+
+ <State 1>: 1.77ns
+The critical path consists of the following:
+	'alloca' operation ('matC_local', mat_mul/mat_mul.c:27) [8]  (0 ns)
+	'call' operation (mat_mul/mat_mul.c:38) to 'copy_mat' [13]  (1.77 ns)
+
+ <State 2>: 0ns
+The critical path consists of the following:
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

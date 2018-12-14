@@ -1,0 +1,139 @@
+<profile>
+
+<section name = "Vivado HLS Report for 'mat_mul_wrap'" level="0">
+<item name = "Date">Thu Dec 13 22:27:52 2018
+</item>
+<item name = "Version">2017.2 (Build 1909853 on Thu Jun 15 18:55:24 MDT 2017)</item>
+<item name = "Project">mat_mul</item>
+<item name = "Solution">mat_mul</item>
+<item name = "Product family">zynq</item>
+<item name = "Target device">xc7z020clg484-1</item>
+</section>
+
+<section name = "Performance Estimates" level="0">
+<item name = "Timing (ns)">
+<section name = "" level="1">
+<item name = "Target clock period (ns)">10.00</item>
+<item name = "Clock uncertainty (ns)">1.25</item>
+<item name = "Estimated clock period (ns)">6.51</item>
+</section>
+</item>
+<item name = "Latency (clock cycles)">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="6">, min, max, min, max, Type</keys>
+<column name="">20202, 20202, 20203, 20203, none</column>
+</table>
+</item>
+<item name = "Detail">
+<section name = "" level="1">
+<item name = "Instance"><table name="" hasTotal="0">
+<keys size="7">Instance, Module, min, max, min, max, Type</keys>
+<column name="grp_copy_mat_fu_28">copy_mat, 20201, 20201, 20201, 20201, none</column>
+<column name="grp_copy_mat_fu_36">copy_mat, 20201, 20201, 20201, 20201, none</column>
+<column name="grp_copy_mat_fu_44">copy_mat, 20201, 20201, 20201, 20201, none</column>
+</table>
+</item>
+<item name = "Loop"><table name="" hasTotal="0">
+<keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
+</table>
+</item>
+</section>
+</item>
+</section>
+</item>
+</section>
+
+<section name = "Utilization Estimates" level="0">
+<item name = "Summary"><table name="" hasTotal="1">
+<keys size="5">Name, BRAM_18K, DSP48E, FF, LUT</keys>
+<column name="DSP">-, -, -, -</column>
+<column name="Expression">-, -, 0, 2</column>
+<column name="FIFO">-, -, -, -</column>
+<column name="Instance">-, -, 660, 372</column>
+<column name="Memory">96, -, 0, 0</column>
+<column name="Multiplexer">-, -, -, 15</column>
+<column name="Register">-, -, 5, -</column>
+<specialColumn name="Available">280, 220, 106400, 53200</specialColumn>
+<specialColumn name="Utilization (%)">34, 0, ~0, ~0</specialColumn>
+</table>
+</item>
+<item name = "Detail">
+<section name = "" level="1">
+<item name = "Instance"><table name="" hasTotal="1">
+<keys size="6">Instance, Module, BRAM_18K, DSP48E, FF, LUT</keys>
+<column name="grp_copy_mat_fu_28">copy_mat, 0, 0, 220, 124</column>
+<column name="grp_copy_mat_fu_36">copy_mat, 0, 0, 220, 124</column>
+<column name="grp_copy_mat_fu_44">copy_mat, 0, 0, 220, 124</column>
+</table>
+</item>
+<item name = "DSP48"><table name="" hasTotal="0">
+<keys size="3">Instance, Module, Expression</keys>
+</table>
+</item>
+<item name = "Memory"><table name="" hasTotal="1">
+<keys size="9">Memory, Module, BRAM_18K, FF, LUT, Words, Bits, Banks, W*Bits*Banks</keys>
+<column name="matB_local_U">mat_mul_wrap_matBcud, 32, 0, 0, 10000, 32, 1, 320000</column>
+<column name="matA_local_U">mat_mul_wrap_matBcud, 32, 0, 0, 10000, 32, 1, 320000</column>
+<column name="matC_local_U">mat_mul_wrap_matCbkb, 32, 0, 0, 10000, 32, 1, 320000</column>
+</table>
+</item>
+<item name = "FIFO"><table name="" hasTotal="1">
+<keys size="7">Name, BRAM_18K, FF, LUT, Depth, Bits, Size:D*B</keys>
+</table>
+</item>
+<item name = "Expression"><table name="" hasTotal="1">
+<keys size="7">Variable Name, Operation, DSP48E, FF, LUT, Bitwidth P0, Bitwidth P1</keys>
+<column name="ap_block_state2_on_subcall_done">or, 0, 0, 2, 1, 1</column>
+</table>
+</item>
+<item name = "Multiplexer"><table name="" hasTotal="1">
+<keys size="5">Name, LUT, Input Size, Bits, Total Bits</keys>
+<column name="ap_NS_fsm">15, 3, 1, 3</column>
+</table>
+</item>
+<item name = "Register"><table name="" hasTotal="1">
+<keys size="5">Name, FF, LUT, Bits, Const Bits</keys>
+<column name="ap_CS_fsm">2, 0, 2, 0</column>
+<column name="ap_reg_grp_copy_mat_fu_28_ap_start">1, 0, 1, 0</column>
+<column name="ap_reg_grp_copy_mat_fu_36_ap_start">1, 0, 1, 0</column>
+<column name="ap_reg_grp_copy_mat_fu_44_ap_start">1, 0, 1, 0</column>
+</table>
+</item>
+</section>
+</item>
+</section>
+
+<section name = "Interface" level="0">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="6">RTL Ports, Dir, Bits, Protocol, Source Object, C Type</keys>
+<column name="ap_clk">in, 1, ap_ctrl_hs, mat_mul_wrap, return value</column>
+<column name="ap_rst">in, 1, ap_ctrl_hs, mat_mul_wrap, return value</column>
+<column name="ap_start">in, 1, ap_ctrl_hs, mat_mul_wrap, return value</column>
+<column name="ap_done">out, 1, ap_ctrl_hs, mat_mul_wrap, return value</column>
+<column name="ap_idle">out, 1, ap_ctrl_hs, mat_mul_wrap, return value</column>
+<column name="ap_ready">out, 1, ap_ctrl_hs, mat_mul_wrap, return value</column>
+<column name="matA_address0">out, 14, ap_memory, matA, array</column>
+<column name="matA_ce0">out, 1, ap_memory, matA, array</column>
+<column name="matA_q0">in, 32, ap_memory, matA, array</column>
+<column name="matB_address0">out, 14, ap_memory, matB, array</column>
+<column name="matB_ce0">out, 1, ap_memory, matB, array</column>
+<column name="matB_q0">in, 32, ap_memory, matB, array</column>
+<column name="matC_address0">out, 14, ap_memory, matC, array</column>
+<column name="matC_ce0">out, 1, ap_memory, matC, array</column>
+<column name="matC_we0">out, 1, ap_memory, matC, array</column>
+<column name="matC_d0">out, 32, ap_memory, matC, array</column>
+</table>
+</item>
+</section>
+
+<section name = "Critical Path" level="0">
+<item name = "Max Delay">5.03</item>
+<item name = "Critical Path Table"><table name="Critical Path Table" hasTotal="0">
+<keys size="15">Name, Operator, Delay, Accumulated Delay, Store Source, Resource, Core, Interface, Type, Port, Array, Scope, Pointer, Callee, Phi Node</keys>
+<column name="'matC_local', mat_mul/mat_mul.c:27">alloca, 3.25, 3.25, -, -, -, -, -, -, -, -, -, -, -</column>
+<column name="mat_mul/mat_mul.c:38">call, 1.77, 5.03, -, -, -, -, -, -, -, -, -, copy_mat, -</column>
+</table>
+</item>
+</section>
+</profile>

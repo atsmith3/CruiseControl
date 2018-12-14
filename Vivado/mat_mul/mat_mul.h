@@ -3,7 +3,9 @@
 
 #define N 100
 
-void mat_mul(float**, float**, float**);
+typedef float matrix[N][N];
+
+void mat_mul(matrix, matrix, matrix);
 
 
 #endif
