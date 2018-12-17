@@ -1,3 +1,2 @@
 #!/bin/bash
-./clean.sh
-./parser -f mat_mul.c -o mat_mul
+./parser -f lenet_hls_c5.c -o lenet_hls_c5
