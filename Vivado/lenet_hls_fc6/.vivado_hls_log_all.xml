@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vivadoHLSLog:LogRoot xmlns:vivadoHLSLog="www.xilinx.com/vivadoHLSLog">
+  <errorLogs>
+    <logs>
+      <synLog/>
+      <simLog/>
+      <mgLog/>
+      <packageLog/>
+      <csimLog/>
+    </logs>
+  </errorLogs>
+  <warningLogs>
+    <logs>
+      <synLog>
+        <logs message="WARNING: [SCHED 204-69] Unable to schedule 'load' operation ('fc6_w_load_2', lenet_hls_fc6/lenet_hls_fc6.c:43) on array 'fc6_w', lenet_hls_fc6/lenet_hls_fc6.c:13 due to limited memory ports." projectName="lenet_hls_fc6" solutionName="lenet_hls_fc6_soln" date="2018-12-16T22:53:47.187-0600" type="Warning"/>
+        <logs message="WARNING: [SCHED 204-68] Unable to enforce a carried dependence constraint (II = 119, distance = 1, offset = 1)&#xD;&#xA;   between bus request on port 'DATA_B' (lenet_hls_fc6/lenet_hls_fc6.c:27) and bus request on port 'DATA_B' (lenet_hls_fc6/lenet_hls_fc6.c:27)." projectName="lenet_hls_fc6" solutionName="lenet_hls_fc6_soln" date="2018-12-16T22:53:43.956-0600" type="Warning"/>
+        <logs message="WARNING: [SCHED 204-68] Unable to enforce a carried dependence constraint (II = 118, distance = 1, offset = 1)&#xD;&#xA;   between bus request on port 'DATA_B' (lenet_hls_fc6/lenet_hls_fc6.c:27) and bus request on port 'DATA_B' (lenet_hls_fc6/lenet_hls_fc6.c:27)." projectName="lenet_hls_fc6" solutionName="lenet_hls_fc6_soln" date="2018-12-16T22:53:43.890-0600" type="Warning"/>
+        <logs message="WARNING: [SCHED 204-68] Unable to enforce a carried dependence constraint (II = 114, distance = 1, offset = 1)&#xD;&#xA;   between bus request on port 'DATA_B' (lenet_hls_fc6/lenet_hls_fc6.c:27) and bus request on port 'DATA_B' (lenet_hls_fc6/lenet_hls_fc6.c:27)." projectName="lenet_hls_fc6" solutionName="lenet_hls_fc6_soln" date="2018-12-16T22:53:42.250-0600" type="Warning"/>
+        <logs message="WARNING: [SCHED 204-68] Unable to enforce a carried dependence constraint (II = 98, distance = 1, offset = 1)&#xD;&#xA;   between bus request on port 'DATA_B' (lenet_hls_fc6/lenet_hls_fc6.c:27) and bus request on port 'DATA_B' (lenet_hls_fc6/lenet_hls_fc6.c:27)." projectName="lenet_hls_fc6" solutionName="lenet_hls_fc6_soln" date="2018-12-16T22:53:40.627-0600" type="Warning"/>
+        <logs message="WARNING: [SCHED 204-68] Unable to enforce a carried dependence constraint (II = 67, distance = 1, offset = 1)&#xD;&#xA;   between bus request on port 'DATA_B' (lenet_hls_fc6/lenet_hls_fc6.c:27) and bus request on port 'DATA_B' (lenet_hls_fc6/lenet_hls_fc6.c:27)." projectName="lenet_hls_fc6" solutionName="lenet_hls_fc6_soln" date="2018-12-16T22:53:40.494-0600" type="Warning"/>
+        <logs message="WARNING: [SCHED 204-68] Unable to enforce a carried dependence constraint (II = 4, distance = 1, offset = 1)&#xD;&#xA;   between bus request on port 'DATA_B' (lenet_hls_fc6/lenet_hls_fc6.c:27) and bus request on port 'DATA_B' (lenet_hls_fc6/lenet_hls_fc6.c:27)." projectName="lenet_hls_fc6" solutionName="lenet_hls_fc6_soln" date="2018-12-16T22:53:40.326-0600" type="Warning"/>
+        <logs message="WARNING: [SCHED 204-68] Unable to enforce a carried dependence constraint (II = 3, distance = 1, offset = 1)&#xD;&#xA;   between bus request on port 'DATA_B' (lenet_hls_fc6/lenet_hls_fc6.c:27) and bus request on port 'DATA_B' (lenet_hls_fc6/lenet_hls_fc6.c:27)." projectName="lenet_hls_fc6" solutionName="lenet_hls_fc6_soln" date="2018-12-16T22:53:38.278-0600" type="Warning"/>
+        <logs message="WARNING: [SCHED 204-68] Unable to enforce a carried dependence constraint (II = 2, distance = 1, offset = 1)&#xD;&#xA;   between bus request on port 'DATA_B' (lenet_hls_fc6/lenet_hls_fc6.c:27) and bus request on port 'DATA_B' (lenet_hls_fc6/lenet_hls_fc6.c:27)." projectName="lenet_hls_fc6" solutionName="lenet_hls_fc6_soln" date="2018-12-16T22:53:38.057-0600" type="Warning"/>
+        <logs message="WARNING: [SCHED 204-68] Unable to enforce a carried dependence constraint (II = 1, distance = 1, offset = 1)&#xD;&#xA;   between bus request on port 'DATA_B' (lenet_hls_fc6/lenet_hls_fc6.c:27) and bus request on port 'DATA_B' (lenet_hls_fc6/lenet_hls_fc6.c:27)." projectName="lenet_hls_fc6" solutionName="lenet_hls_fc6_soln" date="2018-12-16T22:53:37.862-0600" type="Warning"/>
+        <logs message="WARNING: [SYN 201-107] Renaming port name 'fc6/output' to 'fc6/output_r' to avoid the conflict with HDL keywords or other object names." projectName="lenet_hls_fc6" solutionName="lenet_hls_fc6_soln" date="2018-12-16T22:53:34.991-0600" type="Warning"/>
+        <logs message="WARNING: [SYN 201-107] Renaming port name 'fc6/input' to 'fc6/input_r' to avoid the conflict with HDL keywords or other object names." projectName="lenet_hls_fc6" solutionName="lenet_hls_fc6_soln" date="2018-12-16T22:53:34.970-0600" type="Warning"/>
+        <logs message="WARNING: [XFORM 203-503] Ignored partial unroll directive for loop 'Loop-4.1' (lenet_hls_fc6/lenet_hls_fc6.c:40) because its parent loop or function is pipelined." projectName="lenet_hls_fc6" solutionName="lenet_hls_fc6_soln" date="2018-12-16T22:53:30.878-0600" type="Warning"/>
+        <logs message="WARNING: [XFORM 203-503] Ignored partial unroll directive for loop 'Loop-2.1' (lenet_hls_fc6/lenet_hls_fc6.c:25) because its parent loop or function is pipelined." projectName="lenet_hls_fc6" solutionName="lenet_hls_fc6_soln" date="2018-12-16T22:53:30.835-0600" type="Warning"/>
+      </synLog>
+      <simLog/>
+      <mgLog/>
+      <packageLog/>
+      <csimLog/>
+    </logs>
+  </warningLogs>
+</vivadoHLSLog:LogRoot>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vivadoHLSLog:LogRoot xmlns:vivadoHLSLog="www.xilinx.com/vivadoHLSLog">
+  <errorLogs>
+    <logs>
+      <synLog/>
+      <simLog/>
+      <mgLog/>
+      <packageLog/>
+      <csimLog/>
+    </logs>
+  </errorLogs>
+  <warningLogs>
+    <logs>
+      <synLog>
+        <logs message="WARNING: [SYN 201-107] Renaming port name 'convolution5/output' to 'convolution5/output_r' to avoid the conflict with HDL keywords or other object names." projectName="lenet_hls_conv5" solutionName="lenet_hls_conv5_soln" date="2018-12-16T23:04:54.125-0600" type="Warning"/>
+        <logs message="WARNING: [SYN 201-107] Renaming port name 'convolution5/input' to 'convolution5/input_r' to avoid the conflict with HDL keywords or other object names." projectName="lenet_hls_conv5" solutionName="lenet_hls_conv5_soln" date="2018-12-16T23:04:54.098-0600" type="Warning"/>
+      </synLog>
+      <simLog/>
+      <mgLog/>
+      <packageLog/>
+      <csimLog/>
+    </logs>
+  </warningLogs>
+</vivadoHLSLog:LogRoot>

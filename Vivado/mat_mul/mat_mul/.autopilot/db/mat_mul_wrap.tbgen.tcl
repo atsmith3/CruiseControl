@@ -60,7 +60,7 @@ set NewPortList {[
  	{ "name": "matC_d0", "direction": "out", "datatype": "sc_lv", "bitwidth":32, "type": "signal", "bundle":{"name": "matC", "role": "d0" }}  ]}
 
 set RtlHierarchyInfo {[
-	{"ID" : "0", "Level" : "0", "Path" : "`AUTOTB_DUT_INST", "Parent" : "", "Child" : ["1", "2", "3", "4", "5", "6"],
+	{"ID" : "0", "Level" : "0", "Path" : "`AUTOTB_DUT_INST", "Parent" : "", "Child" : ["1", "2", "3", "4", "7", "8"],
 		"CDFG" : "mat_mul_wrap",
 		"ControlExist" : "1", "ap_start" : "1", "ap_ready" : "1", "ap_done" : "1", "ap_continue" : "0", "ap_idle" : "1",
 		"Pipeline" : "None", "AlignedPipeline" : "0", "UnalignedPipeline" : "0", "RewindPipeline" : "0", "ProcessNetwork" : "0",
@@ -69,23 +69,38 @@ set RtlHierarchyInfo {[
 		"ClockEnable" : "0",
 		"VariableLatency" : "1",
 		"WaitState" : [
-			{"State" : "ap_ST_fsm_state2", "FSM" : "ap_CS_fsm", "SubInstance" : "grp_copy_mat_fu_28"},
-			{"State" : "ap_ST_fsm_state2", "FSM" : "ap_CS_fsm", "SubInstance" : "grp_copy_mat_fu_36"},
-			{"State" : "ap_ST_fsm_state2", "FSM" : "ap_CS_fsm", "SubInstance" : "grp_copy_mat_fu_44"}],
+			{"State" : "ap_ST_fsm_state4", "FSM" : "ap_CS_fsm", "SubInstance" : "grp_mat_mul_fu_30"},
+			{"State" : "ap_ST_fsm_state2", "FSM" : "ap_CS_fsm", "SubInstance" : "grp_copy_mat_fu_37"},
+			{"State" : "ap_ST_fsm_state6", "FSM" : "ap_CS_fsm", "SubInstance" : "grp_copy_mat_fu_37"},
+			{"State" : "ap_ST_fsm_state2", "FSM" : "ap_CS_fsm", "SubInstance" : "grp_copy_mat_fu_45"}],
 		"Port" : [
 			{"Name" : "matA", "Type" : "Memory", "Direction" : "I",
 				"SubConnect" : [
-					{"ID" : "4", "SubInstance" : "grp_copy_mat_fu_28", "Port" : "src"}]},
+					{"ID" : "7", "SubInstance" : "grp_copy_mat_fu_37", "Port" : "src"}]},
 			{"Name" : "matB", "Type" : "Memory", "Direction" : "I",
 				"SubConnect" : [
-					{"ID" : "5", "SubInstance" : "grp_copy_mat_fu_36", "Port" : "src"}]},
+					{"ID" : "8", "SubInstance" : "grp_copy_mat_fu_45", "Port" : "src"}]},
 			{"Name" : "matC", "Type" : "Memory", "Direction" : "O",
 				"SubConnect" : [
-					{"ID" : "6", "SubInstance" : "grp_copy_mat_fu_44", "Port" : "dest"}]}]},
+					{"ID" : "7", "SubInstance" : "grp_copy_mat_fu_37", "Port" : "dest"}]}]},
 	{"ID" : "1", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.matC_local_U", "Parent" : "0"},
 	{"ID" : "2", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.matB_local_U", "Parent" : "0"},
 	{"ID" : "3", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.matA_local_U", "Parent" : "0"},
-	{"ID" : "4", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.grp_copy_mat_fu_28", "Parent" : "0",
+	{"ID" : "4", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.grp_mat_mul_fu_30", "Parent" : "0", "Child" : ["5", "6"],
+		"CDFG" : "mat_mul",
+		"ControlExist" : "1", "ap_start" : "1", "ap_ready" : "1", "ap_done" : "1", "ap_continue" : "0", "ap_idle" : "1",
+		"Pipeline" : "None", "AlignedPipeline" : "0", "UnalignedPipeline" : "0", "RewindPipeline" : "0", "ProcessNetwork" : "0",
+		"Combinational" : "0",
+		"Datapath" : "0",
+		"ClockEnable" : "0",
+		"VariableLatency" : "1",
+		"Port" : [
+			{"Name" : "matA", "Type" : "Memory", "Direction" : "I"},
+			{"Name" : "matB", "Type" : "Memory", "Direction" : "I"},
+			{"Name" : "matC", "Type" : "Memory", "Direction" : "O"}]},
+	{"ID" : "5", "Level" : "2", "Path" : "`AUTOTB_DUT_INST.grp_mat_mul_fu_30.mat_mul_wrap_fmulbkb_U2", "Parent" : "4"},
+	{"ID" : "6", "Level" : "2", "Path" : "`AUTOTB_DUT_INST.grp_mat_mul_fu_30.mat_mul_wrap_mac_cud_U3", "Parent" : "4"},
+	{"ID" : "7", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.grp_copy_mat_fu_37", "Parent" : "0",
 		"CDFG" : "copy_mat",
 		"ControlExist" : "1", "ap_start" : "1", "ap_ready" : "1", "ap_done" : "1", "ap_continue" : "0", "ap_idle" : "1",
 		"Pipeline" : "None", "AlignedPipeline" : "0", "UnalignedPipeline" : "0", "RewindPipeline" : "0", "ProcessNetwork" : "0",
@@ -96,18 +111,7 @@ set RtlHierarchyInfo {[
 		"Port" : [
 			{"Name" : "src", "Type" : "Memory", "Direction" : "I"},
 			{"Name" : "dest", "Type" : "Memory", "Direction" : "O"}]},
-	{"ID" : "5", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.grp_copy_mat_fu_36", "Parent" : "0",
-		"CDFG" : "copy_mat",
-		"ControlExist" : "1", "ap_start" : "1", "ap_ready" : "1", "ap_done" : "1", "ap_continue" : "0", "ap_idle" : "1",
-		"Pipeline" : "None", "AlignedPipeline" : "0", "UnalignedPipeline" : "0", "RewindPipeline" : "0", "ProcessNetwork" : "0",
-		"Combinational" : "0",
-		"Datapath" : "0",
-		"ClockEnable" : "0",
-		"VariableLatency" : "1",
-		"Port" : [
-			{"Name" : "src", "Type" : "Memory", "Direction" : "I"},
-			{"Name" : "dest", "Type" : "Memory", "Direction" : "O"}]},
-	{"ID" : "6", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.grp_copy_mat_fu_44", "Parent" : "0",
+	{"ID" : "8", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.grp_copy_mat_fu_45", "Parent" : "0",
 		"CDFG" : "copy_mat",
 		"ControlExist" : "1", "ap_start" : "1", "ap_ready" : "1", "ap_done" : "1", "ap_continue" : "0", "ap_idle" : "1",
 		"Pipeline" : "None", "AlignedPipeline" : "0", "UnalignedPipeline" : "0", "RewindPipeline" : "0", "ProcessNetwork" : "0",
@@ -125,9 +129,10 @@ set ArgLastReadFirstWriteLatency {
 		matA {Type I LastRead 2 FirstWrite -1}
 		matB {Type I LastRead 2 FirstWrite -1}
 		matC {Type O LastRead -1 FirstWrite 3}}
-	copy_mat {
-		src {Type I LastRead 2 FirstWrite -1}
-		dest {Type O LastRead -1 FirstWrite 3}}
+	mat_mul {
+		matA {Type I LastRead 4 FirstWrite -1}
+		matB {Type I LastRead 4 FirstWrite -1}
+		matC {Type O LastRead -1 FirstWrite 10}}
 	copy_mat {
 		src {Type I LastRead 2 FirstWrite -1}
 		dest {Type O LastRead -1 FirstWrite 3}}
@@ -138,8 +143,8 @@ set ArgLastReadFirstWriteLatency {
 set hasDtUnsupportedChannel 0
 
 set PerformanceInfo {[
-	{"Name" : "Latency", "Min" : "20202", "Max" : "20202"}
-	, {"Name" : "Interval", "Min" : "20203", "Max" : "20203"}
+	{"Name" : "Latency", "Min" : "860608", "Max" : "860608"}
+	, {"Name" : "Interval", "Min" : "860609", "Max" : "860609"}
 ]}
 
 set PipelineEnableSignalInfo {[

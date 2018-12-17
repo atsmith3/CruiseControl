@@ -147,14 +147,14 @@ void AESL_WRAP_mat_mul_wrap(float (*)[100], float (*)[100], float (*)[100]);
 
 
 /* Global Variable Definitions and Initialization */
+static  char aesl_internal_str1[17] = "HW SW CoSim Pass";
 float matCh[100][100];
 float matBh[100][100];
+float matAs[100][100];
 float matAh[100][100];
 float matBs[100][100];
 float matCs[100][100];
-float matAs[100][100];
 static  char aesl_internal_str[22] = "Beginning HW SW CoSim";
-static  char aesl_internal_str1[17] = "HW SW CoSim Pass";
 
 
 /* Function Bodies */

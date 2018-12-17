@@ -3,8 +3,32 @@
 
 <trans_list>
 
-<trans id="17" from="1" to="2">
-<condition id="2">
+<trans id="23" from="1" to="2">
+<condition id="6">
+<or_exp><and_exp></and_exp></or_exp>
+</condition>
+</trans>
+
+<trans id="24" from="2" to="3">
+<condition id="7">
+<or_exp><and_exp></and_exp></or_exp>
+</condition>
+</trans>
+
+<trans id="25" from="3" to="4">
+<condition id="8">
+<or_exp><and_exp></and_exp></or_exp>
+</condition>
+</trans>
+
+<trans id="26" from="4" to="5">
+<condition id="9">
+<or_exp><and_exp></and_exp></or_exp>
+</condition>
+</trans>
+
+<trans id="27" from="5" to="6">
+<condition id="10">
 <or_exp><and_exp></and_exp></or_exp>
 </condition>
 </trans>
@@ -16,7 +40,7 @@
 
 <state id="1" st_id="1">
 
-<operation id="3" st_id="1" stage="1" lat="1">
+<operation id="7" st_id="1" stage="1" lat="1">
 <core>NULL</core>
 <MemPortIdVec></MemPortIdVec>
 <condition id="0">
@@ -31,7 +55,7 @@
 <StgValue><ssdm name="matC_local"/></StgValue>
 </operation>
 
-<operation id="4" st_id="1" stage="1" lat="1">
+<operation id="8" st_id="1" stage="1" lat="1">
 <core>NULL</core>
 <MemPortIdVec></MemPortIdVec>
 <condition id="0">
@@ -46,7 +70,7 @@
 <StgValue><ssdm name="matB_local"/></StgValue>
 </operation>
 
-<operation id="5" st_id="1" stage="1" lat="1">
+<operation id="9" st_id="1" stage="1" lat="1">
 <core>NULL</core>
 <MemPortIdVec></MemPortIdVec>
 <condition id="0">
@@ -61,7 +85,7 @@
 <StgValue><ssdm name="matA_local"/></StgValue>
 </operation>
 
-<operation id="6" st_id="1" stage="2" lat="2">
+<operation id="10" st_id="1" stage="2" lat="2">
 <core></core>
 <MemPortIdVec></MemPortIdVec>
 <condition id="0">
@@ -76,7 +100,7 @@
 <StgValue><ssdm name=""/></StgValue>
 </operation>
 
-<operation id="7" st_id="1" stage="2" lat="2">
+<operation id="11" st_id="1" stage="2" lat="2">
 <core></core>
 <MemPortIdVec></MemPortIdVec>
 <condition id="0">
@@ -90,80 +114,20 @@
 ]]></Node>
 <StgValue><ssdm name=""/></StgValue>
 </operation>
-
-<operation id="8" st_id="1" stage="2" lat="2">
-<core></core>
-<MemPortIdVec></MemPortIdVec>
-<condition id="0">
-<or_exp><and_exp></and_exp></or_exp>
-</condition>
-
-<Node id="13" bw="0" op_0_bw="0" op_1_bw="32" op_2_bw="32">
-<![CDATA[
-:9  call fastcc void @copy_mat([10000 x float]* %matC_local, [10000 x float]* %matC) nounwind
-
-]]></Node>
-<StgValue><ssdm name=""/></StgValue>
-</operation>
 </state>
 
 <state id="2" st_id="2">
 
-<operation id="9" st_id="2" stage="1" lat="1">
-<core>NULL</core>
+<operation id="12" st_id="2" stage="1" lat="2">
+<core></core>
 <MemPortIdVec></MemPortIdVec>
 <condition id="1">
 <or_exp><and_exp></and_exp></or_exp>
 </condition>
 
-<Node id="4" bw="0" op_0_bw="0" op_1_bw="32">
+<Node id="11" bw="0" op_0_bw="0" op_1_bw="32" op_2_bw="32">
 <![CDATA[
-:0  call void (...)* @_ssdm_op_SpecBitsMap([10000 x float]* %matA) nounwind, !map !13
-
-]]></Node>
-<StgValue><ssdm name=""/></StgValue>
-</operation>
-
-<operation id="10" st_id="2" stage="1" lat="1">
-<core>NULL</core>
-<MemPortIdVec></MemPortIdVec>
-<condition id="1">
-<or_exp><and_exp></and_exp></or_exp>
-</condition>
-
-<Node id="5" bw="0" op_0_bw="0" op_1_bw="32">
-<![CDATA[
-:1  call void (...)* @_ssdm_op_SpecBitsMap([10000 x float]* %matB) nounwind, !map !19
-
-]]></Node>
-<StgValue><ssdm name=""/></StgValue>
-</operation>
-
-<operation id="11" st_id="2" stage="1" lat="1">
-<core>NULL</core>
-<MemPortIdVec></MemPortIdVec>
-<condition id="1">
-<or_exp><and_exp></and_exp></or_exp>
-</condition>
-
-<Node id="6" bw="0" op_0_bw="0" op_1_bw="32">
-<![CDATA[
-:2  call void (...)* @_ssdm_op_SpecBitsMap([10000 x float]* %matC) nounwind, !map !23
-
-]]></Node>
-<StgValue><ssdm name=""/></StgValue>
-</operation>
-
-<operation id="12" st_id="2" stage="1" lat="1">
-<core>NULL</core>
-<MemPortIdVec></MemPortIdVec>
-<condition id="1">
-<or_exp><and_exp></and_exp></or_exp>
-</condition>
-
-<Node id="7" bw="0" op_0_bw="0" op_1_bw="0">
-<![CDATA[
-:3  call void (...)* @_ssdm_op_SpecTopModule([13 x i8]* @mat_mul_wrap_str) nounwind
+:7  call fastcc void @copy_mat([10000 x float]* %matA, [10000 x float]* %matA_local) nounwind
 
 ]]></Node>
 <StgValue><ssdm name=""/></StgValue>
@@ -176,21 +140,6 @@
 <or_exp><and_exp></and_exp></or_exp>
 </condition>
 
-<Node id="11" bw="0" op_0_bw="0" op_1_bw="32" op_2_bw="32">
-<![CDATA[
-:7  call fastcc void @copy_mat([10000 x float]* %matA, [10000 x float]* %matA_local) nounwind
-
-]]></Node>
-<StgValue><ssdm name=""/></StgValue>
-</operation>
-
-<operation id="14" st_id="2" stage="1" lat="2">
-<core></core>
-<MemPortIdVec></MemPortIdVec>
-<condition id="1">
-<or_exp><and_exp></and_exp></or_exp>
-</condition>
-
 <Node id="12" bw="0" op_0_bw="0" op_1_bw="32" op_2_bw="32">
 <![CDATA[
 :8  call fastcc void @copy_mat([10000 x float]* %matB, [10000 x float]* %matB_local) nounwind
@@ -198,32 +147,149 @@
 ]]></Node>
 <StgValue><ssdm name=""/></StgValue>
 </operation>
+</state>
 
-<operation id="15" st_id="2" stage="1" lat="2">
+<state id="3" st_id="3">
+
+<operation id="14" st_id="3" stage="2" lat="2">
 <core></core>
 <MemPortIdVec></MemPortIdVec>
-<condition id="1">
+<condition id="2">
 <or_exp><and_exp></and_exp></or_exp>
 </condition>
 
-<Node id="13" bw="0" op_0_bw="0" op_1_bw="32" op_2_bw="32">
+<Node id="13" bw="0" op_0_bw="0" op_1_bw="32" op_2_bw="32" op_3_bw="32">
 <![CDATA[
-:9  call fastcc void @copy_mat([10000 x float]* %matC_local, [10000 x float]* %matC) nounwind
+:9  call fastcc void @mat_mul([10000 x float]* %matA_local, [10000 x float]* %matB_local, [10000 x float]* %matC_local) nounwind
+
+]]></Node>
+<StgValue><ssdm name=""/></StgValue>
+</operation>
+</state>
+
+<state id="4" st_id="4">
+
+<operation id="15" st_id="4" stage="1" lat="2">
+<core></core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="3">
+<or_exp><and_exp></and_exp></or_exp>
+</condition>
+
+<Node id="13" bw="0" op_0_bw="0" op_1_bw="32" op_2_bw="32" op_3_bw="32">
+<![CDATA[
+:9  call fastcc void @mat_mul([10000 x float]* %matA_local, [10000 x float]* %matB_local, [10000 x float]* %matC_local) nounwind
+
+]]></Node>
+<StgValue><ssdm name=""/></StgValue>
+</operation>
+</state>
+
+<state id="5" st_id="5">
+
+<operation id="16" st_id="5" stage="2" lat="2">
+<core></core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="4">
+<or_exp><and_exp></and_exp></or_exp>
+</condition>
+
+<Node id="14" bw="0" op_0_bw="0" op_1_bw="32" op_2_bw="32">
+<![CDATA[
+:10  call fastcc void @copy_mat([10000 x float]* %matC_local, [10000 x float]* %matC) nounwind
+
+]]></Node>
+<StgValue><ssdm name=""/></StgValue>
+</operation>
+</state>
+
+<state id="6" st_id="6">
+
+<operation id="17" st_id="6" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="5">
+<or_exp><and_exp></and_exp></or_exp>
+</condition>
+
+<Node id="4" bw="0" op_0_bw="0" op_1_bw="32">
+<![CDATA[
+:0  call void (...)* @_ssdm_op_SpecBitsMap([10000 x float]* %matA) nounwind, !map !13
 
 ]]></Node>
 <StgValue><ssdm name=""/></StgValue>
 </operation>
 
-<operation id="16" st_id="2" stage="1" lat="1">
+<operation id="18" st_id="6" stage="1" lat="1">
 <core>NULL</core>
 <MemPortIdVec></MemPortIdVec>
-<condition id="1">
+<condition id="5">
 <or_exp><and_exp></and_exp></or_exp>
 </condition>
 
-<Node id="14" bw="0">
+<Node id="5" bw="0" op_0_bw="0" op_1_bw="32">
 <![CDATA[
-:10  ret void
+:1  call void (...)* @_ssdm_op_SpecBitsMap([10000 x float]* %matB) nounwind, !map !19
+
+]]></Node>
+<StgValue><ssdm name=""/></StgValue>
+</operation>
+
+<operation id="19" st_id="6" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="5">
+<or_exp><and_exp></and_exp></or_exp>
+</condition>
+
+<Node id="6" bw="0" op_0_bw="0" op_1_bw="32">
+<![CDATA[
+:2  call void (...)* @_ssdm_op_SpecBitsMap([10000 x float]* %matC) nounwind, !map !23
+
+]]></Node>
+<StgValue><ssdm name=""/></StgValue>
+</operation>
+
+<operation id="20" st_id="6" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="5">
+<or_exp><and_exp></and_exp></or_exp>
+</condition>
+
+<Node id="7" bw="0" op_0_bw="0" op_1_bw="0">
+<![CDATA[
+:3  call void (...)* @_ssdm_op_SpecTopModule([13 x i8]* @mat_mul_wrap_str) nounwind
+
+]]></Node>
+<StgValue><ssdm name=""/></StgValue>
+</operation>
+
+<operation id="21" st_id="6" stage="1" lat="2">
+<core></core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="5">
+<or_exp><and_exp></and_exp></or_exp>
+</condition>
+
+<Node id="14" bw="0" op_0_bw="0" op_1_bw="32" op_2_bw="32">
+<![CDATA[
+:10  call fastcc void @copy_mat([10000 x float]* %matC_local, [10000 x float]* %matC) nounwind
+
+]]></Node>
+<StgValue><ssdm name=""/></StgValue>
+</operation>
+
+<operation id="22" st_id="6" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="5">
+<or_exp><and_exp></and_exp></or_exp>
+</condition>
+
+<Node id="15" bw="0">
+<![CDATA[
+:11  ret void
 
 ]]></Node>
 <StgValue><ssdm name=""/></StgValue>

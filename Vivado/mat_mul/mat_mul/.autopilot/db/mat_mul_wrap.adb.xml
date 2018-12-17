@@ -3,8 +3,32 @@
 
 <trans_list>
 
-<trans id="17" from="1" to="2">
-<condition id="2">
+<trans id="23" from="1" to="2">
+<condition id="6">
+<or_exp><and_exp></and_exp></or_exp>
+</condition>
+</trans>
+
+<trans id="24" from="2" to="3">
+<condition id="7">
+<or_exp><and_exp></and_exp></or_exp>
+</condition>
+</trans>
+
+<trans id="25" from="3" to="4">
+<condition id="8">
+<or_exp><and_exp></and_exp></or_exp>
+</condition>
+</trans>
+
+<trans id="26" from="4" to="5">
+<condition id="9">
+<or_exp><and_exp></and_exp></or_exp>
+</condition>
+</trans>
+
+<trans id="27" from="5" to="6">
+<condition id="10">
 <or_exp><and_exp></and_exp></or_exp>
 </condition>
 </trans>
@@ -16,7 +40,7 @@
 
 <state id="1" st_id="1">
 
-<operation id="3" st_id="1" stage="1" lat="1">
+<operation id="7" st_id="1" stage="1" lat="1">
 <core>NULL</core>
 <MemPortIdVec></MemPortIdVec>
 <condition id="0">
@@ -28,11 +52,11 @@
 :4  %matC_local = alloca [10000 x float], align 4
 
 ]]></Node>
-<StgValue><ssdm name="matC_local"/><MemPortTyVec>1 3 </MemPortTyVec>
+<StgValue><ssdm name="matC_local"/><MemPortTyVec>2 3 </MemPortTyVec>
 </StgValue>
 </operation>
 
-<operation id="4" st_id="1" stage="1" lat="1">
+<operation id="8" st_id="1" stage="1" lat="1">
 <core>NULL</core>
 <MemPortIdVec></MemPortIdVec>
 <condition id="0">
@@ -44,11 +68,11 @@
 :5  %matB_local = alloca [10000 x float], align 4
 
 ]]></Node>
-<StgValue><ssdm name="matB_local"/><MemPortTyVec>0 3 </MemPortTyVec>
+<StgValue><ssdm name="matB_local"/><MemPortTyVec>2 3 </MemPortTyVec>
 </StgValue>
 </operation>
 
-<operation id="5" st_id="1" stage="1" lat="1">
+<operation id="9" st_id="1" stage="1" lat="1">
 <core>NULL</core>
 <MemPortIdVec></MemPortIdVec>
 <condition id="0">
@@ -60,11 +84,11 @@
 :6  %matA_local = alloca [10000 x float], align 4
 
 ]]></Node>
-<StgValue><ssdm name="matA_local"/><MemPortTyVec>0 3 </MemPortTyVec>
+<StgValue><ssdm name="matA_local"/><MemPortTyVec>2 3 </MemPortTyVec>
 </StgValue>
 </operation>
 
-<operation id="6" st_id="1" stage="2" lat="2">
+<operation id="10" st_id="1" stage="2" lat="2">
 <core></core>
 <MemPortIdVec></MemPortIdVec>
 <condition id="0">
@@ -79,7 +103,7 @@
 <StgValue><ssdm name=""/></StgValue>
 </operation>
 
-<operation id="7" st_id="1" stage="2" lat="2">
+<operation id="11" st_id="1" stage="2" lat="2">
 <core></core>
 <MemPortIdVec></MemPortIdVec>
 <condition id="0">
@@ -93,80 +117,20 @@
 ]]></Node>
 <StgValue><ssdm name=""/></StgValue>
 </operation>
-
-<operation id="8" st_id="1" stage="2" lat="2">
-<core></core>
-<MemPortIdVec></MemPortIdVec>
-<condition id="0">
-<or_exp><and_exp></and_exp></or_exp>
-</condition>
-
-<Node id="13" bw="0" op_0_bw="0" op_1_bw="32" op_2_bw="32">
-<![CDATA[
-:9  call fastcc void @copy_mat([10000 x float]* %matC_local, [10000 x float]* %matC) nounwind
-
-]]></Node>
-<StgValue><ssdm name=""/></StgValue>
-</operation>
 </state>
 
 <state id="2" st_id="2">
 
-<operation id="9" st_id="2" stage="1" lat="1">
-<core>NULL</core>
+<operation id="12" st_id="2" stage="1" lat="2">
+<core></core>
 <MemPortIdVec></MemPortIdVec>
 <condition id="1">
 <or_exp><and_exp></and_exp></or_exp>
 </condition>
 
-<Node id="4" bw="0" op_0_bw="0" op_1_bw="32">
+<Node id="11" bw="0" op_0_bw="0" op_1_bw="32" op_2_bw="32">
 <![CDATA[
-:0  call void (...)* @_ssdm_op_SpecBitsMap([10000 x float]* %matA) nounwind, !map !13
-
-]]></Node>
-<StgValue><ssdm name=""/></StgValue>
-</operation>
-
-<operation id="10" st_id="2" stage="1" lat="1">
-<core>NULL</core>
-<MemPortIdVec></MemPortIdVec>
-<condition id="1">
-<or_exp><and_exp></and_exp></or_exp>
-</condition>
-
-<Node id="5" bw="0" op_0_bw="0" op_1_bw="32">
-<![CDATA[
-:1  call void (...)* @_ssdm_op_SpecBitsMap([10000 x float]* %matB) nounwind, !map !19
-
-]]></Node>
-<StgValue><ssdm name=""/></StgValue>
-</operation>
-
-<operation id="11" st_id="2" stage="1" lat="1">
-<core>NULL</core>
-<MemPortIdVec></MemPortIdVec>
-<condition id="1">
-<or_exp><and_exp></and_exp></or_exp>
-</condition>
-
-<Node id="6" bw="0" op_0_bw="0" op_1_bw="32">
-<![CDATA[
-:2  call void (...)* @_ssdm_op_SpecBitsMap([10000 x float]* %matC) nounwind, !map !23
-
-]]></Node>
-<StgValue><ssdm name=""/></StgValue>
-</operation>
-
-<operation id="12" st_id="2" stage="1" lat="1">
-<core>NULL</core>
-<MemPortIdVec></MemPortIdVec>
-<condition id="1">
-<or_exp><and_exp></and_exp></or_exp>
-</condition>
-
-<Node id="7" bw="0" op_0_bw="0" op_1_bw="0">
-<![CDATA[
-:3  call void (...)* @_ssdm_op_SpecTopModule([13 x i8]* @mat_mul_wrap_str) nounwind
+:7  call fastcc void @copy_mat([10000 x float]* %matA, [10000 x float]* %matA_local) nounwind
 
 ]]></Node>
 <StgValue><ssdm name=""/></StgValue>
@@ -179,21 +143,6 @@
 <or_exp><and_exp></and_exp></or_exp>
 </condition>
 
-<Node id="11" bw="0" op_0_bw="0" op_1_bw="32" op_2_bw="32">
-<![CDATA[
-:7  call fastcc void @copy_mat([10000 x float]* %matA, [10000 x float]* %matA_local) nounwind
-
-]]></Node>
-<StgValue><ssdm name=""/></StgValue>
-</operation>
-
-<operation id="14" st_id="2" stage="1" lat="2">
-<core></core>
-<MemPortIdVec></MemPortIdVec>
-<condition id="1">
-<or_exp><and_exp></and_exp></or_exp>
-</condition>
-
 <Node id="12" bw="0" op_0_bw="0" op_1_bw="32" op_2_bw="32">
 <![CDATA[
 :8  call fastcc void @copy_mat([10000 x float]* %matB, [10000 x float]* %matB_local) nounwind
@@ -201,32 +150,149 @@
 ]]></Node>
 <StgValue><ssdm name=""/></StgValue>
 </operation>
+</state>
 
-<operation id="15" st_id="2" stage="1" lat="2">
+<state id="3" st_id="3">
+
+<operation id="14" st_id="3" stage="2" lat="2">
 <core></core>
 <MemPortIdVec></MemPortIdVec>
-<condition id="1">
+<condition id="2">
 <or_exp><and_exp></and_exp></or_exp>
 </condition>
 
-<Node id="13" bw="0" op_0_bw="0" op_1_bw="32" op_2_bw="32">
+<Node id="13" bw="0" op_0_bw="0" op_1_bw="32" op_2_bw="32" op_3_bw="32">
 <![CDATA[
-:9  call fastcc void @copy_mat([10000 x float]* %matC_local, [10000 x float]* %matC) nounwind
+:9  call fastcc void @mat_mul([10000 x float]* %matA_local, [10000 x float]* %matB_local, [10000 x float]* %matC_local) nounwind
+
+]]></Node>
+<StgValue><ssdm name=""/></StgValue>
+</operation>
+</state>
+
+<state id="4" st_id="4">
+
+<operation id="15" st_id="4" stage="1" lat="2">
+<core></core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="3">
+<or_exp><and_exp></and_exp></or_exp>
+</condition>
+
+<Node id="13" bw="0" op_0_bw="0" op_1_bw="32" op_2_bw="32" op_3_bw="32">
+<![CDATA[
+:9  call fastcc void @mat_mul([10000 x float]* %matA_local, [10000 x float]* %matB_local, [10000 x float]* %matC_local) nounwind
+
+]]></Node>
+<StgValue><ssdm name=""/></StgValue>
+</operation>
+</state>
+
+<state id="5" st_id="5">
+
+<operation id="16" st_id="5" stage="2" lat="2">
+<core></core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="4">
+<or_exp><and_exp></and_exp></or_exp>
+</condition>
+
+<Node id="14" bw="0" op_0_bw="0" op_1_bw="32" op_2_bw="32">
+<![CDATA[
+:10  call fastcc void @copy_mat([10000 x float]* %matC_local, [10000 x float]* %matC) nounwind
+
+]]></Node>
+<StgValue><ssdm name=""/></StgValue>
+</operation>
+</state>
+
+<state id="6" st_id="6">
+
+<operation id="17" st_id="6" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="5">
+<or_exp><and_exp></and_exp></or_exp>
+</condition>
+
+<Node id="4" bw="0" op_0_bw="0" op_1_bw="32">
+<![CDATA[
+:0  call void (...)* @_ssdm_op_SpecBitsMap([10000 x float]* %matA) nounwind, !map !13
 
 ]]></Node>
 <StgValue><ssdm name=""/></StgValue>
 </operation>
 
-<operation id="16" st_id="2" stage="1" lat="1">
+<operation id="18" st_id="6" stage="1" lat="1">
 <core>NULL</core>
 <MemPortIdVec></MemPortIdVec>
-<condition id="1">
+<condition id="5">
 <or_exp><and_exp></and_exp></or_exp>
 </condition>
 
-<Node id="14" bw="0">
+<Node id="5" bw="0" op_0_bw="0" op_1_bw="32">
 <![CDATA[
-:10  ret void
+:1  call void (...)* @_ssdm_op_SpecBitsMap([10000 x float]* %matB) nounwind, !map !19
+
+]]></Node>
+<StgValue><ssdm name=""/></StgValue>
+</operation>
+
+<operation id="19" st_id="6" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="5">
+<or_exp><and_exp></and_exp></or_exp>
+</condition>
+
+<Node id="6" bw="0" op_0_bw="0" op_1_bw="32">
+<![CDATA[
+:2  call void (...)* @_ssdm_op_SpecBitsMap([10000 x float]* %matC) nounwind, !map !23
+
+]]></Node>
+<StgValue><ssdm name=""/></StgValue>
+</operation>
+
+<operation id="20" st_id="6" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="5">
+<or_exp><and_exp></and_exp></or_exp>
+</condition>
+
+<Node id="7" bw="0" op_0_bw="0" op_1_bw="0">
+<![CDATA[
+:3  call void (...)* @_ssdm_op_SpecTopModule([13 x i8]* @mat_mul_wrap_str) nounwind
+
+]]></Node>
+<StgValue><ssdm name=""/></StgValue>
+</operation>
+
+<operation id="21" st_id="6" stage="1" lat="2">
+<core></core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="5">
+<or_exp><and_exp></and_exp></or_exp>
+</condition>
+
+<Node id="14" bw="0" op_0_bw="0" op_1_bw="32" op_2_bw="32">
+<![CDATA[
+:10  call fastcc void @copy_mat([10000 x float]* %matC_local, [10000 x float]* %matC) nounwind
+
+]]></Node>
+<StgValue><ssdm name=""/></StgValue>
+</operation>
+
+<operation id="22" st_id="6" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="5">
+<or_exp><and_exp></and_exp></or_exp>
+</condition>
+
+<Node id="15" bw="0">
+<![CDATA[
+:11  ret void
 
 ]]></Node>
 <StgValue><ssdm name=""/></StgValue>
@@ -236,15 +302,15 @@
 
 
 <ports>
-<port id="18" name="matA" dir="0" iftype="1">
+<port id="28" name="matA" dir="0" iftype="1">
 <core>RAM</core><StgValue><ssdm name="matA"/><MemPortTyVec>1 3 </MemPortTyVec>
 </StgValue>
 </port>
-<port id="19" name="matB" dir="0" iftype="1">
+<port id="29" name="matB" dir="0" iftype="1">
 <core>RAM</core><StgValue><ssdm name="matB"/><MemPortTyVec>1 3 </MemPortTyVec>
 </StgValue>
 </port>
-<port id="20" name="matC" dir="1" iftype="1">
+<port id="30" name="matC" dir="1" iftype="1">
 <core>RAM</core><StgValue><ssdm name="matC"/><MemPortTyVec>0 3 </MemPortTyVec>
 </StgValue>
 </port>
@@ -252,63 +318,79 @@
 
 
 <dataflows>
-<dataflow id="22" from="StgValue_21" to="matC_local" fromId="21" toId="3">
+<dataflow id="32" from="StgValue_31" to="matC_local" fromId="31" toId="7">
 </dataflow>
-<dataflow id="23" from="StgValue_21" to="matB_local" fromId="21" toId="4">
+<dataflow id="33" from="StgValue_31" to="matB_local" fromId="31" toId="8">
 </dataflow>
-<dataflow id="24" from="StgValue_21" to="matA_local" fromId="21" toId="5">
+<dataflow id="34" from="StgValue_31" to="matA_local" fromId="31" toId="9">
 </dataflow>
-<dataflow id="26" from="copy_mat" to="StgValue_6" fromId="25" toId="6">
+<dataflow id="36" from="copy_mat" to="StgValue_10" fromId="35" toId="10">
 </dataflow>
-<dataflow id="27" from="matA" to="StgValue_6" fromId="18" toId="6">
+<dataflow id="37" from="matA" to="StgValue_10" fromId="28" toId="10">
 </dataflow>
-<dataflow id="28" from="matA_local" to="StgValue_6" fromId="5" toId="6">
+<dataflow id="38" from="matA_local" to="StgValue_10" fromId="9" toId="10">
 </dataflow>
-<dataflow id="29" from="copy_mat" to="StgValue_7" fromId="25" toId="7">
+<dataflow id="39" from="copy_mat" to="StgValue_11" fromId="35" toId="11">
 </dataflow>
-<dataflow id="30" from="matB" to="StgValue_7" fromId="19" toId="7">
+<dataflow id="40" from="matB" to="StgValue_11" fromId="29" toId="11">
 </dataflow>
-<dataflow id="31" from="matB_local" to="StgValue_7" fromId="4" toId="7">
+<dataflow id="41" from="matB_local" to="StgValue_11" fromId="8" toId="11">
 </dataflow>
-<dataflow id="32" from="copy_mat" to="StgValue_8" fromId="25" toId="8">
+<dataflow id="42" from="copy_mat" to="StgValue_12" fromId="35" toId="12">
 </dataflow>
-<dataflow id="33" from="matC_local" to="StgValue_8" fromId="3" toId="8">
+<dataflow id="43" from="matA" to="StgValue_12" fromId="28" toId="12">
 </dataflow>
-<dataflow id="34" from="matC" to="StgValue_8" fromId="20" toId="8">
+<dataflow id="44" from="matA_local" to="StgValue_12" fromId="9" toId="12">
 </dataflow>
-<dataflow id="36" from="_ssdm_op_SpecBitsMap" to="StgValue_9" fromId="35" toId="9">
+<dataflow id="45" from="copy_mat" to="StgValue_13" fromId="35" toId="13">
 </dataflow>
-<dataflow id="37" from="matA" to="StgValue_9" fromId="18" toId="9">
+<dataflow id="46" from="matB" to="StgValue_13" fromId="29" toId="13">
 </dataflow>
-<dataflow id="38" from="_ssdm_op_SpecBitsMap" to="StgValue_10" fromId="35" toId="10">
+<dataflow id="47" from="matB_local" to="StgValue_13" fromId="8" toId="13">
 </dataflow>
-<dataflow id="39" from="matB" to="StgValue_10" fromId="19" toId="10">
+<dataflow id="49" from="mat_mul" to="StgValue_14" fromId="48" toId="14">
 </dataflow>
-<dataflow id="40" from="_ssdm_op_SpecBitsMap" to="StgValue_11" fromId="35" toId="11">
+<dataflow id="50" from="matA_local" to="StgValue_14" fromId="9" toId="14">
 </dataflow>
-<dataflow id="41" from="matC" to="StgValue_11" fromId="20" toId="11">
+<dataflow id="51" from="matB_local" to="StgValue_14" fromId="8" toId="14">
 </dataflow>
-<dataflow id="43" from="_ssdm_op_SpecTopModule" to="StgValue_12" fromId="42" toId="12">
+<dataflow id="52" from="matC_local" to="StgValue_14" fromId="7" toId="14">
 </dataflow>
-<dataflow id="45" from="mat_mul_wrap_str" to="StgValue_12" fromId="44" toId="12">
+<dataflow id="53" from="mat_mul" to="StgValue_15" fromId="48" toId="15">
 </dataflow>
-<dataflow id="46" from="copy_mat" to="StgValue_13" fromId="25" toId="13">
+<dataflow id="54" from="matA_local" to="StgValue_15" fromId="9" toId="15">
 </dataflow>
-<dataflow id="47" from="matA" to="StgValue_13" fromId="18" toId="13">
+<dataflow id="55" from="matB_local" to="StgValue_15" fromId="8" toId="15">
 </dataflow>
-<dataflow id="48" from="matA_local" to="StgValue_13" fromId="5" toId="13">
+<dataflow id="56" from="matC_local" to="StgValue_15" fromId="7" toId="15">
 </dataflow>
-<dataflow id="49" from="copy_mat" to="StgValue_14" fromId="25" toId="14">
+<dataflow id="57" from="copy_mat" to="StgValue_16" fromId="35" toId="16">
 </dataflow>
-<dataflow id="50" from="matB" to="StgValue_14" fromId="19" toId="14">
+<dataflow id="58" from="matC_local" to="StgValue_16" fromId="7" toId="16">
 </dataflow>
-<dataflow id="51" from="matB_local" to="StgValue_14" fromId="4" toId="14">
+<dataflow id="59" from="matC" to="StgValue_16" fromId="30" toId="16">
 </dataflow>
-<dataflow id="52" from="copy_mat" to="StgValue_15" fromId="25" toId="15">
+<dataflow id="61" from="_ssdm_op_SpecBitsMap" to="StgValue_17" fromId="60" toId="17">
 </dataflow>
-<dataflow id="53" from="matC_local" to="StgValue_15" fromId="3" toId="15">
+<dataflow id="62" from="matA" to="StgValue_17" fromId="28" toId="17">
 </dataflow>
-<dataflow id="54" from="matC" to="StgValue_15" fromId="20" toId="15">
+<dataflow id="63" from="_ssdm_op_SpecBitsMap" to="StgValue_18" fromId="60" toId="18">
+</dataflow>
+<dataflow id="64" from="matB" to="StgValue_18" fromId="29" toId="18">
+</dataflow>
+<dataflow id="65" from="_ssdm_op_SpecBitsMap" to="StgValue_19" fromId="60" toId="19">
+</dataflow>
+<dataflow id="66" from="matC" to="StgValue_19" fromId="30" toId="19">
+</dataflow>
+<dataflow id="68" from="_ssdm_op_SpecTopModule" to="StgValue_20" fromId="67" toId="20">
+</dataflow>
+<dataflow id="70" from="mat_mul_wrap_str" to="StgValue_20" fromId="69" toId="20">
+</dataflow>
+<dataflow id="71" from="copy_mat" to="StgValue_21" fromId="35" toId="21">
+</dataflow>
+<dataflow id="72" from="matC_local" to="StgValue_21" fromId="7" toId="21">
+</dataflow>
+<dataflow id="73" from="matC" to="StgValue_21" fromId="30" toId="21">
 </dataflow>
 </dataflows>
 

@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vivado HLS Report for 'mat_mul_wrap'" level="0">
-<item name = "Date">Thu Dec 13 22:27:52 2018
+<item name = "Date">Sun Dec 16 18:08:40 2018
 </item>
 <item name = "Version">2017.2 (Build 1909853 on Thu Jun 15 18:55:24 MDT 2017)</item>
 <item name = "Project">mat_mul</item>
@@ -15,7 +15,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="4">Clock, Target, Estimated, Uncertainty</keys>
-<column name="ap_clk">10.00, 6.51, 1.25</column>
+<column name="ap_clk">10.00, 8.70, 1.25</column>
 </table>
 </item>
 </section>
@@ -24,16 +24,16 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="6">, min, max, min, max, Type</keys>
-<column name="">20202, 20202, 20203, 20203, none</column>
+<column name="">860608, 860608, 860609, 860609, none</column>
 </table>
 </item>
 <item name = "Detail">
 <section name = "" level="1">
 <item name = "Instance"><table name="" hasTotal="0">
 <keys size="7">Instance, Module, min, max, min, max, Type</keys>
-<column name="grp_copy_mat_fu_28">copy_mat, 20201, 20201, 20201, 20201, none</column>
-<column name="grp_copy_mat_fu_36">copy_mat, 20201, 20201, 20201, 20201, none</column>
-<column name="grp_copy_mat_fu_44">copy_mat, 20201, 20201, 20201, 20201, none</column>
+<column name="grp_mat_mul_fu_30">mat_mul, 820201, 820201, 820201, 820201, none</column>
+<column name="grp_copy_mat_fu_37">copy_mat, 20201, 20201, 20201, 20201, none</column>
+<column name="grp_copy_mat_fu_45">copy_mat, 20201, 20201, 20201, 20201, none</column>
 </table>
 </item>
 <item name = "Loop"><table name="" hasTotal="0">
@@ -52,21 +52,21 @@
 <column name="DSP">-, -, -, -</column>
 <column name="Expression">-, -, 0, 2</column>
 <column name="FIFO">-, -, -, -</column>
-<column name="Instance">-, -, 660, 372</column>
+<column name="Instance">-, 4, 1054, 787</column>
 <column name="Memory">96, -, 0, 0</column>
-<column name="Multiplexer">-, -, -, 15</column>
-<column name="Register">-, -, 5, -</column>
+<column name="Multiplexer">-, -, -, 199</column>
+<column name="Register">-, -, 9, -</column>
 <specialColumn name="Available">280, 220, 106400, 53200</specialColumn>
-<specialColumn name="Utilization (%)">34, 0, ~0, ~0</specialColumn>
+<specialColumn name="Utilization (%)">34, 1, ~0, 1</specialColumn>
 </table>
 </item>
 <item name = "Detail">
 <section name = "" level="1">
 <item name = "Instance"><table name="" hasTotal="1">
 <keys size="6">Instance, Module, BRAM_18K, DSP48E, FF, LUT</keys>
-<column name="grp_copy_mat_fu_28">copy_mat, 0, 0, 220, 124</column>
-<column name="grp_copy_mat_fu_36">copy_mat, 0, 0, 220, 124</column>
-<column name="grp_copy_mat_fu_44">copy_mat, 0, 0, 220, 124</column>
+<column name="grp_copy_mat_fu_37">copy_mat, 0, 0, 220, 124</column>
+<column name="grp_copy_mat_fu_45">copy_mat, 0, 0, 220, 124</column>
+<column name="grp_mat_mul_fu_30">mat_mul, 0, 4, 614, 539</column>
 </table>
 </item>
 <item name = "DSP48"><table name="" hasTotal="0">
@@ -75,9 +75,9 @@
 </item>
 <item name = "Memory"><table name="" hasTotal="1">
 <keys size="9">Memory, Module, BRAM_18K, FF, LUT, Words, Bits, Banks, W*Bits*Banks</keys>
-<column name="matB_local_U">mat_mul_wrap_matBcud, 32, 0, 0, 10000, 32, 1, 320000</column>
-<column name="matA_local_U">mat_mul_wrap_matBcud, 32, 0, 0, 10000, 32, 1, 320000</column>
-<column name="matC_local_U">mat_mul_wrap_matCbkb, 32, 0, 0, 10000, 32, 1, 320000</column>
+<column name="matC_local_U">mat_mul_wrap_matCdEe, 32, 0, 0, 10000, 32, 1, 320000</column>
+<column name="matB_local_U">mat_mul_wrap_matCdEe, 32, 0, 0, 10000, 32, 1, 320000</column>
+<column name="matA_local_U">mat_mul_wrap_matCdEe, 32, 0, 0, 10000, 32, 1, 320000</column>
 </table>
 </item>
 <item name = "FIFO"><table name="" hasTotal="1">
@@ -91,15 +91,28 @@
 </item>
 <item name = "Multiplexer"><table name="" hasTotal="1">
 <keys size="5">Name, LUT, Input Size, Bits, Total Bits</keys>
-<column name="ap_NS_fsm">15, 3, 1, 3</column>
+<column name="ap_NS_fsm">40, 7, 1, 7</column>
+<column name="grp_copy_mat_fu_37_src_q0">15, 3, 32, 96</column>
+<column name="matA_ce0">9, 2, 1, 2</column>
+<column name="matA_local_address0">15, 3, 14, 42</column>
+<column name="matA_local_ce0">15, 3, 1, 3</column>
+<column name="matA_local_we0">9, 2, 1, 2</column>
+<column name="matB_local_address0">15, 3, 14, 42</column>
+<column name="matB_local_ce0">15, 3, 1, 3</column>
+<column name="matB_local_we0">9, 2, 1, 2</column>
+<column name="matC_ce0">9, 2, 1, 2</column>
+<column name="matC_local_address0">15, 3, 14, 42</column>
+<column name="matC_local_ce0">15, 3, 1, 3</column>
+<column name="matC_local_we0">9, 2, 1, 2</column>
+<column name="matC_we0">9, 2, 1, 2</column>
 </table>
 </item>
 <item name = "Register"><table name="" hasTotal="1">
 <keys size="5">Name, FF, LUT, Bits, Const Bits</keys>
-<column name="ap_CS_fsm">2, 0, 2, 0</column>
-<column name="ap_reg_grp_copy_mat_fu_28_ap_start">1, 0, 1, 0</column>
-<column name="ap_reg_grp_copy_mat_fu_36_ap_start">1, 0, 1, 0</column>
-<column name="ap_reg_grp_copy_mat_fu_44_ap_start">1, 0, 1, 0</column>
+<column name="ap_CS_fsm">6, 0, 6, 0</column>
+<column name="ap_reg_grp_copy_mat_fu_37_ap_start">1, 0, 1, 0</column>
+<column name="ap_reg_grp_copy_mat_fu_45_ap_start">1, 0, 1, 0</column>
+<column name="ap_reg_grp_mat_mul_fu_30_ap_start">1, 0, 1, 0</column>
 </table>
 </item>
 </section>

@@ -1,0 +1,350 @@
+
+
+================================================================
+== Vivado HLS Report for 'mat_mul'
+================================================================
+* Date:           Sun Dec 16 18:08:39 2018
+
+* Version:        2017.2 (Build 1909853 on Thu Jun 15 18:55:24 MDT 2017)
+* Project:        mat_mul
+* Solution:       mat_mul
+* Product family: zynq
+* Target device:  xc7z020clg484-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing (ns): 
+    * Summary: 
+    +--------+-------+----------+------------+
+    |  Clock | Target| Estimated| Uncertainty|
+    +--------+-------+----------+------------+
+    |ap_clk  |  10.00|      8.70|        1.25|
+    +--------+-------+----------+------------+
+
++ Latency (clock cycles): 
+    * Summary: 
+    +--------+--------+--------+--------+---------+
+    |     Latency     |     Interval    | Pipeline|
+    |   min  |   max  |   min  |   max  |   Type  |
+    +--------+--------+--------+--------+---------+
+    |  820201|  820201|  820201|  820201|   none  |
+    +--------+--------+--------+--------+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +-----------------+--------+--------+----------+-----------+-----------+------+----------+
+        |                 |     Latency     | Iteration|  Initiation Interval  | Trip |          |
+        |    Loop Name    |   min  |   max  |  Latency |  achieved |   target  | Count| Pipelined|
+        +-----------------+--------+--------+----------+-----------+-----------+------+----------+
+        |- Loop 1         |  820200|  820200|      8202|          -|          -|   100|    no    |
+        | + Loop 1.1      |    8200|    8200|        82|          -|          -|   100|    no    |
+        |  ++ Loop 1.1.1  |      80|      80|         8|          -|          -|    10|    no    |
+        +-----------------+--------+--------+----------+-----------+-----------+------+----------+
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 0
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states: 11
+* Pipeline: 0
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 
+	2  / true
+2 --> 
+	3  / (!exitcond2)
+3 --> 
+	4  / (!exitcond1)
+	2  / (exitcond1)
+4 --> 
+	5  / (!exitcond)
+	3  / (exitcond)
+5 --> 
+	6  / true
+6 --> 
+	7  / true
+7 --> 
+	8  / true
+8 --> 
+	9  / true
+9 --> 
+	10  / true
+10 --> 
+	11  / true
+11 --> 
+	4  / true
+* FSM state operations: 
+
+ <State 1>: 1.59ns
+ST_1: StgValue_12 (4)  [1/1] 1.59ns  loc: mat_mul/mat_mul.c:14
+:0  br label %.loopexit
+
+
+ <State 2>: 2.91ns
+ST_2: i (6)  [1/1] 0.00ns
+.loopexit:0  %i = phi i7 [ 0, %0 ], [ %i_1, %.loopexit.loopexit ]
+
+ST_2: phi_mul (7)  [1/1] 0.00ns
+.loopexit:1  %phi_mul = phi i14 [ 0, %0 ], [ %next_mul, %.loopexit.loopexit ]
+
+ST_2: next_mul (8)  [1/1] 2.34ns
+.loopexit:2  %next_mul = add i14 %phi_mul, 100
+
+ST_2: exitcond2 (9)  [1/1] 2.91ns  loc: mat_mul/mat_mul.c:14
+.loopexit:3  %exitcond2 = icmp eq i7 %i, -28
+
+ST_2: empty (10)  [1/1] 0.00ns
+.loopexit:4  %empty = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 100, i64 100, i64 100)
+
+ST_2: i_1 (11)  [1/1] 2.32ns  loc: mat_mul/mat_mul.c:14
+.loopexit:5  %i_1 = add i7 %i, 1
+
+ST_2: StgValue_19 (12)  [1/1] 0.00ns  loc: mat_mul/mat_mul.c:14
+.loopexit:6  br i1 %exitcond2, label %1, label %.preheader3.preheader
+
+ST_2: StgValue_20 (14)  [1/1] 1.59ns  loc: mat_mul/mat_mul.c:18
+.preheader3.preheader:0  br label %.preheader3
+
+ST_2: StgValue_21 (54)  [1/1] 0.00ns  loc: mat_mul/mat_mul.c:22
+:0  ret void
+
+
+ <State 3>: 2.91ns
+ST_3: j (16)  [1/1] 0.00ns
+.preheader3:0  %j = phi i7 [ %j_1, %.preheader3.loopexit ], [ 0, %.preheader3.preheader ]
+
+ST_3: j_cast1_cast (17)  [1/1] 0.00ns  loc: mat_mul/mat_mul.c:18
+.preheader3:1  %j_cast1_cast = zext i7 %j to i14
+
+ST_3: tmp_1 (18)  [1/1] 2.34ns  loc: mat_mul/mat_mul.c:18
+.preheader3:2  %tmp_1 = add i14 %phi_mul, %j_cast1_cast
+
+ST_3: tmp_1_cast (19)  [1/1] 0.00ns  loc: mat_mul/mat_mul.c:18
+.preheader3:3  %tmp_1_cast = zext i14 %tmp_1 to i32
+
+ST_3: matC_addr (20)  [1/1] 0.00ns  loc: mat_mul/mat_mul.c:18
+.preheader3:4  %matC_addr = getelementptr [10000 x float]* %matC, i32 0, i32 %tmp_1_cast
+
+ST_3: exitcond1 (21)  [1/1] 2.91ns  loc: mat_mul/mat_mul.c:15
+.preheader3:5  %exitcond1 = icmp eq i7 %j, -28
+
+ST_3: empty_3 (22)  [1/1] 0.00ns
+.preheader3:6  %empty_3 = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 100, i64 100, i64 100)
+
+ST_3: j_1 (23)  [1/1] 2.32ns  loc: mat_mul/mat_mul.c:15
+.preheader3:7  %j_1 = add i7 %j, 1
+
+ST_3: StgValue_30 (24)  [1/1] 0.00ns  loc: mat_mul/mat_mul.c:15
+.preheader3:8  br i1 %exitcond1, label %.loopexit.loopexit, label %.preheader.0.preheader
+
+ST_3: StgValue_31 (26)  [1/1] 1.59ns
+.preheader.0.preheader:0  br label %.preheader.0
+
+ST_3: StgValue_32 (52)  [1/1] 0.00ns
+.loopexit.loopexit:0  br label %.loopexit
+
+
+ <State 4>: 8.70ns
+ST_4: k (28)  [1/1] 0.00ns  loc: mat_mul/mat_mul.c:16
+.preheader.0:0  %k = phi i7 [ %k_1_9, %.preheader.1 ], [ 0, %.preheader.0.preheader ]
+
+ST_4: empty_4 (29)  [1/1] 0.00ns
+.preheader.0:1  %empty_4 = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 10, i64 10, i64 10)
+
+ST_4: exitcond (30)  [1/1] 2.91ns  loc: mat_mul/mat_mul.c:16
+.preheader.0:2  %exitcond = icmp eq i7 %k, -28
+
+ST_4: StgValue_36 (31)  [1/1] 0.00ns  loc: mat_mul/mat_mul.c:16
+.preheader.0:3  br i1 %exitcond, label %.preheader3.loopexit, label %.preheader.1
+
+ST_4: k_1_8 (33)  [1/1] 2.32ns  loc: mat_mul/mat_mul.c:16
+.preheader.1:0  %k_1_8 = add i7 %k, 9
+
+ST_4: k_1_8_cast_cast1 (34)  [1/1] 0.00ns  loc: mat_mul/mat_mul.c:18
+.preheader.1:1  %k_1_8_cast_cast1 = zext i7 %k_1_8 to i14
+
+ST_4: k_1_8_cast_cast (35)  [1/1] 0.00ns  loc: mat_mul/mat_mul.c:18
+.preheader.1:2  %k_1_8_cast_cast = zext i7 %k_1_8 to i14
+
+ST_4: tmp_2 (36)  [1/1] 2.34ns  loc: mat_mul/mat_mul.c:18
+.preheader.1:3  %tmp_2 = add i14 %phi_mul, %k_1_8_cast_cast
+
+ST_4: tmp_3 (39)  [1/1] 3.36ns  loc: mat_mul/mat_mul.c:18
+.preheader.1:6  %tmp_3 = mul i14 %k_1_8_cast_cast1, 100
+
+ST_4: tmp_4 (40)  [1/1] 3.02ns  loc: mat_mul/mat_mul.c:18
+.preheader.1:7  %tmp_4 = add i14 %tmp_3, %j_cast1_cast
+
+ST_4: k_1_9 (47)  [1/1] 2.32ns  loc: mat_mul/mat_mul.c:16
+.preheader.1:14  %k_1_9 = add i7 %k, 10
+
+ST_4: StgValue_44 (50)  [1/1] 0.00ns
+.preheader3.loopexit:0  br label %.preheader3
+
+
+ <State 5>: 3.25ns
+ST_5: tmp_2_cast (37)  [1/1] 0.00ns  loc: mat_mul/mat_mul.c:18
+.preheader.1:4  %tmp_2_cast = zext i14 %tmp_2 to i32
+
+ST_5: matA_addr (38)  [1/1] 0.00ns  loc: mat_mul/mat_mul.c:18
+.preheader.1:5  %matA_addr = getelementptr [10000 x float]* %matA, i32 0, i32 %tmp_2_cast
+
+ST_5: tmp_4_cast (41)  [1/1] 0.00ns  loc: mat_mul/mat_mul.c:18
+.preheader.1:8  %tmp_4_cast = zext i14 %tmp_4 to i32
+
+ST_5: matB_addr (42)  [1/1] 0.00ns  loc: mat_mul/mat_mul.c:18
+.preheader.1:9  %matB_addr = getelementptr [10000 x float]* %matB, i32 0, i32 %tmp_4_cast
+
+ST_5: matA_load (43)  [2/2] 3.25ns  loc: mat_mul/mat_mul.c:18
+.preheader.1:10  %matA_load = load float* %matA_addr, align 4
+
+ST_5: matB_load (44)  [2/2] 3.25ns  loc: mat_mul/mat_mul.c:18
+.preheader.1:11  %matB_load = load float* %matB_addr, align 4
+
+
+ <State 6>: 3.25ns
+ST_6: matA_load (43)  [1/2] 3.25ns  loc: mat_mul/mat_mul.c:18
+.preheader.1:10  %matA_load = load float* %matA_addr, align 4
+
+ST_6: matB_load (44)  [1/2] 3.25ns  loc: mat_mul/mat_mul.c:18
+.preheader.1:11  %matB_load = load float* %matB_addr, align 4
+
+
+ <State 7>: 5.70ns
+ST_7: tmp_9 (45)  [4/4] 5.70ns  loc: mat_mul/mat_mul.c:18
+.preheader.1:12  %tmp_9 = fmul float %matA_load, %matB_load
+
+
+ <State 8>: 5.70ns
+ST_8: tmp_9 (45)  [3/4] 5.70ns  loc: mat_mul/mat_mul.c:18
+.preheader.1:12  %tmp_9 = fmul float %matA_load, %matB_load
+
+
+ <State 9>: 5.70ns
+ST_9: tmp_9 (45)  [2/4] 5.70ns  loc: mat_mul/mat_mul.c:18
+.preheader.1:12  %tmp_9 = fmul float %matA_load, %matB_load
+
+
+ <State 10>: 5.70ns
+ST_10: tmp_9 (45)  [1/4] 5.70ns  loc: mat_mul/mat_mul.c:18
+.preheader.1:12  %tmp_9 = fmul float %matA_load, %matB_load
+
+
+ <State 11>: 3.25ns
+ST_11: StgValue_57 (46)  [1/1] 3.25ns  loc: mat_mul/mat_mul.c:18
+.preheader.1:13  store float %tmp_9, float* %matC_addr, align 4
+
+ST_11: StgValue_58 (48)  [1/1] 0.00ns  loc: mat_mul/mat_mul.c:16
+.preheader.1:15  br label %.preheader.0
+
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 10ns, clock uncertainty: 1.25ns.
+
+ <State 1>: 1.59ns
+The critical path consists of the following:
+	multiplexor before 'phi' operation ('i') with incoming values : ('i', mat_mul/mat_mul.c:14) [6]  (1.59 ns)
+
+ <State 2>: 2.91ns
+The critical path consists of the following:
+	'phi' operation ('i') with incoming values : ('i', mat_mul/mat_mul.c:14) [6]  (0 ns)
+	'icmp' operation ('exitcond2', mat_mul/mat_mul.c:14) [9]  (2.91 ns)
+
+ <State 3>: 2.91ns
+The critical path consists of the following:
+	'phi' operation ('j') with incoming values : ('j', mat_mul/mat_mul.c:15) [16]  (0 ns)
+	'icmp' operation ('exitcond1', mat_mul/mat_mul.c:15) [21]  (2.91 ns)
+
+ <State 4>: 8.7ns
+The critical path consists of the following:
+	'phi' operation ('k', mat_mul/mat_mul.c:16) with incoming values : ('k_1_9', mat_mul/mat_mul.c:16) [28]  (0 ns)
+	'add' operation ('k_1_8', mat_mul/mat_mul.c:16) [33]  (2.32 ns)
+	'mul' operation ('tmp_3', mat_mul/mat_mul.c:18) [39]  (3.36 ns)
+	'add' operation ('tmp_4', mat_mul/mat_mul.c:18) [40]  (3.02 ns)
+
+ <State 5>: 3.25ns
+The critical path consists of the following:
+	'getelementptr' operation ('matA_addr', mat_mul/mat_mul.c:18) [38]  (0 ns)
+	'load' operation ('matA_load', mat_mul/mat_mul.c:18) on array 'matA' [43]  (3.25 ns)
+
+ <State 6>: 3.25ns
+The critical path consists of the following:
+	'load' operation ('matA_load', mat_mul/mat_mul.c:18) on array 'matA' [43]  (3.25 ns)
+
+ <State 7>: 5.7ns
+The critical path consists of the following:
+	'fmul' operation ('tmp_9', mat_mul/mat_mul.c:18) [45]  (5.7 ns)
+
+ <State 8>: 5.7ns
+The critical path consists of the following:
+	'fmul' operation ('tmp_9', mat_mul/mat_mul.c:18) [45]  (5.7 ns)
+
+ <State 9>: 5.7ns
+The critical path consists of the following:
+	'fmul' operation ('tmp_9', mat_mul/mat_mul.c:18) [45]  (5.7 ns)
+
+ <State 10>: 5.7ns
+The critical path consists of the following:
+	'fmul' operation ('tmp_9', mat_mul/mat_mul.c:18) [45]  (5.7 ns)
+
+ <State 11>: 3.25ns
+The critical path consists of the following:
+	'store' operation (mat_mul/mat_mul.c:18) of variable 'tmp_9', mat_mul/mat_mul.c:18 on array 'matC' [46]  (3.25 ns)
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+	State 4
+	State 5
+	State 6
+	State 7
+	State 8
+	State 9
+	State 10
+	State 11
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

@@ -70,7 +70,7 @@
 
 <Node id="5" bw="7" op_0_bw="7" op_1_bw="0">
 <![CDATA[
-.loopexit:0  %i = phi i7 [ 0, %0 ], [ %i_1, %.loopexit.loopexit ]
+.loopexit:0  %i = phi i7 [ 0, %0 ], [ %i_2, %.loopexit.loopexit ]
 
 ]]></Node>
 <StgValue><ssdm name="i"/></StgValue>
@@ -145,10 +145,10 @@
 
 <Node id="10" bw="7" op_0_bw="7" op_1_bw="7">
 <![CDATA[
-.loopexit:5  %i_1 = add i7 %i, 1
+.loopexit:5  %i_2 = add i7 %i, 1
 
 ]]></Node>
-<StgValue><ssdm name="i_1"/></StgValue>
+<StgValue><ssdm name="i_2"/></StgValue>
 </operation>
 
 <operation id="12" st_id="2" stage="1" lat="1">
@@ -210,7 +210,7 @@
 
 <Node id="15" bw="7" op_0_bw="7" op_1_bw="0">
 <![CDATA[
-.preheader:0  %j = phi i7 [ %j_1, %1 ], [ 0, %.preheader.preheader ]
+.preheader:0  %j = phi i7 [ %j_2, %1 ], [ 0, %.preheader.preheader ]
 
 ]]></Node>
 <StgValue><ssdm name="j"/></StgValue>
@@ -240,10 +240,10 @@
 
 <Node id="17" bw="14" op_0_bw="14" op_1_bw="14">
 <![CDATA[
-.preheader:2  %tmp_1 = add i14 %phi_mul, %j_cast1_cast
+.preheader:2  %tmp_5 = add i14 %phi_mul, %j_cast1_cast
 
 ]]></Node>
-<StgValue><ssdm name="tmp_1"/></StgValue>
+<StgValue><ssdm name="tmp_5"/></StgValue>
 </operation>
 
 <operation id="18" st_id="3" stage="1" lat="1">
@@ -255,10 +255,10 @@
 
 <Node id="18" bw="32" op_0_bw="14">
 <![CDATA[
-.preheader:3  %tmp_1_cast = zext i14 %tmp_1 to i32
+.preheader:3  %tmp_5_cast = zext i14 %tmp_5 to i32
 
 ]]></Node>
-<StgValue><ssdm name="tmp_1_cast"/></StgValue>
+<StgValue><ssdm name="tmp_5_cast"/></StgValue>
 </operation>
 
 <operation id="19" st_id="3" stage="1" lat="1">
@@ -270,7 +270,7 @@
 
 <Node id="19" bw="14" op_0_bw="32" op_1_bw="32" op_2_bw="32">
 <![CDATA[
-.preheader:4  %src_addr = getelementptr [10000 x float]* %src, i32 0, i32 %tmp_1_cast
+.preheader:4  %src_addr = getelementptr [10000 x float]* %src, i32 0, i32 %tmp_5_cast
 
 ]]></Node>
 <StgValue><ssdm name="src_addr"/></StgValue>
@@ -285,7 +285,7 @@
 
 <Node id="20" bw="14" op_0_bw="32" op_1_bw="32" op_2_bw="32">
 <![CDATA[
-.preheader:5  %dest_addr = getelementptr [10000 x float]* %dest, i32 0, i32 %tmp_1_cast
+.preheader:5  %dest_addr = getelementptr [10000 x float]* %dest, i32 0, i32 %tmp_5_cast
 
 ]]></Node>
 <StgValue><ssdm name="dest_addr"/></StgValue>
@@ -315,10 +315,10 @@
 
 <Node id="22" bw="32" op_0_bw="32" op_1_bw="64" op_2_bw="64" op_3_bw="64">
 <![CDATA[
-.preheader:7  %empty_3 = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 100, i64 100, i64 100)
+.preheader:7  %empty_5 = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 100, i64 100, i64 100)
 
 ]]></Node>
-<StgValue><ssdm name="empty_3"/></StgValue>
+<StgValue><ssdm name="empty_5"/></StgValue>
 </operation>
 
 <operation id="23" st_id="3" stage="1" lat="1">
@@ -330,10 +330,10 @@
 
 <Node id="23" bw="7" op_0_bw="7" op_1_bw="7">
 <![CDATA[
-.preheader:8  %j_1 = add i7 %j, 1
+.preheader:8  %j_2 = add i7 %j, 1
 
 ]]></Node>
-<StgValue><ssdm name="j_1"/></StgValue>
+<StgValue><ssdm name="j_2"/></StgValue>
 </operation>
 
 <operation id="24" st_id="3" stage="1" lat="1">
@@ -454,7 +454,7 @@
 </dataflow>
 <dataflow id="40" from="StgValue_5" to="i" fromId="5" toId="6">
 </dataflow>
-<dataflow id="41" from="i_1" to="i" fromId="11" toId="6">
+<dataflow id="41" from="i_2" to="i" fromId="11" toId="6">
 <BackEdge/>
 <condition id="27">
 <or_exp><and_exp><literal name="exitcond" val="1"/>
@@ -497,13 +497,13 @@
 </dataflow>
 <dataflow id="59" from="StgValue_56" to="empty" fromId="56" toId="10">
 </dataflow>
-<dataflow id="60" from="i" to="i_1" fromId="6" toId="11">
+<dataflow id="60" from="i" to="i_2" fromId="6" toId="11">
 </dataflow>
-<dataflow id="62" from="StgValue_61" to="i_1" fromId="61" toId="11">
+<dataflow id="62" from="StgValue_61" to="i_2" fromId="61" toId="11">
 </dataflow>
 <dataflow id="63" from="exitcond1" to="StgValue_12" fromId="9" toId="12">
 </dataflow>
-<dataflow id="64" from="j_1" to="j" fromId="23" toId="15">
+<dataflow id="64" from="j_2" to="j" fromId="23" toId="15">
 <BackEdge/>
 <condition id="30">
 <or_exp><and_exp></and_exp></or_exp>
@@ -522,39 +522,39 @@
 </dataflow>
 <dataflow id="68" from="j" to="j_cast1_cast" fromId="15" toId="16">
 </dataflow>
-<dataflow id="69" from="phi_mul" to="tmp_1" fromId="7" toId="17">
+<dataflow id="69" from="phi_mul" to="tmp_5" fromId="7" toId="17">
 </dataflow>
-<dataflow id="70" from="j_cast1_cast" to="tmp_1" fromId="16" toId="17">
+<dataflow id="70" from="j_cast1_cast" to="tmp_5" fromId="16" toId="17">
 </dataflow>
-<dataflow id="71" from="tmp_1" to="tmp_1_cast" fromId="17" toId="18">
+<dataflow id="71" from="tmp_5" to="tmp_5_cast" fromId="17" toId="18">
 </dataflow>
 <dataflow id="72" from="src" to="src_addr" fromId="36" toId="19">
 </dataflow>
 <dataflow id="74" from="StgValue_73" to="src_addr" fromId="73" toId="19">
 </dataflow>
-<dataflow id="75" from="tmp_1_cast" to="src_addr" fromId="18" toId="19">
+<dataflow id="75" from="tmp_5_cast" to="src_addr" fromId="18" toId="19">
 </dataflow>
 <dataflow id="76" from="dest" to="dest_addr" fromId="37" toId="20">
 </dataflow>
 <dataflow id="77" from="StgValue_73" to="dest_addr" fromId="73" toId="20">
 </dataflow>
-<dataflow id="78" from="tmp_1_cast" to="dest_addr" fromId="18" toId="20">
+<dataflow id="78" from="tmp_5_cast" to="dest_addr" fromId="18" toId="20">
 </dataflow>
 <dataflow id="79" from="j" to="exitcond" fromId="15" toId="21">
 </dataflow>
 <dataflow id="80" from="StgValue_52" to="exitcond" fromId="52" toId="21">
 </dataflow>
-<dataflow id="81" from="_ssdm_op_SpecLoopTripCount" to="empty_3" fromId="54" toId="22">
+<dataflow id="81" from="_ssdm_op_SpecLoopTripCount" to="empty_5" fromId="54" toId="22">
 </dataflow>
-<dataflow id="82" from="StgValue_56" to="empty_3" fromId="56" toId="22">
+<dataflow id="82" from="StgValue_56" to="empty_5" fromId="56" toId="22">
 </dataflow>
-<dataflow id="83" from="StgValue_56" to="empty_3" fromId="56" toId="22">
+<dataflow id="83" from="StgValue_56" to="empty_5" fromId="56" toId="22">
 </dataflow>
-<dataflow id="84" from="StgValue_56" to="empty_3" fromId="56" toId="22">
+<dataflow id="84" from="StgValue_56" to="empty_5" fromId="56" toId="22">
 </dataflow>
-<dataflow id="85" from="j" to="j_1" fromId="15" toId="23">
+<dataflow id="85" from="j" to="j_2" fromId="15" toId="23">
 </dataflow>
-<dataflow id="86" from="StgValue_61" to="j_1" fromId="61" toId="23">
+<dataflow id="86" from="StgValue_61" to="j_2" fromId="61" toId="23">
 </dataflow>
 <dataflow id="87" from="exitcond" to="StgValue_24" fromId="21" toId="24">
 </dataflow>

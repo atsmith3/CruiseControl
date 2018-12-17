@@ -415,7 +415,8 @@ void mat_mul(matrix matA, matrix matB, matrix matC) {_ssdm_SpecArrayDimSize(matC
  for(i = 0; i < 100; i++){
   for(j = 0; j < 100; j++){
    for(k = 0; k < 100; k++){
-    matC[i][j] = matA[i][k] * matB[k][j];
+_ssdm_Unroll(1, 0, 10, "");
+ matC[i][j] = matA[i][k] * matB[k][j];
    }
   }
  }
@@ -434,6 +435,7 @@ void mat_mul_wrap(matrix matA, matrix matB, matrix matC) {_ssdm_SpecArrayDimSize
  copy_mat(matB, matB_local);
 
  /* Matrix Mult */
+ mat_mul(matA_local, matB_local, matC_local);
 
  /* Writeback */
  copy_mat(matC_local, matC);

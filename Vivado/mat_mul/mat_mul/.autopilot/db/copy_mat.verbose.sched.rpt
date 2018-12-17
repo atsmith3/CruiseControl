@@ -3,7 +3,7 @@
 ================================================================
 == Vivado HLS Report for 'copy_mat'
 ================================================================
-* Date:           Thu Dec 13 22:27:51 2018
+* Date:           Sun Dec 16 18:08:39 2018
 
 * Version:        2017.2 (Build 1909853 on Thu Jun 15 18:55:24 MDT 2017)
 * Project:        mat_mul
@@ -94,7 +94,7 @@ ST_1: StgValue_5 (3)  [1/1] 1.59ns  loc: mat_mul/mat_mul.c:5
 
  <State 2>: 2.91ns
 ST_2: i (5)  [1/1] 0.00ns
-.loopexit:0  %i = phi i7 [ 0, %0 ], [ %i_1, %.loopexit.loopexit ]
+.loopexit:0  %i = phi i7 [ 0, %0 ], [ %i_2, %.loopexit.loopexit ]
 
 ST_2: phi_mul (6)  [1/1] 0.00ns
 .loopexit:1  %phi_mul = phi i14 [ 0, %0 ], [ %next_mul, %.loopexit.loopexit ]
@@ -108,8 +108,8 @@ ST_2: exitcond1 (8)  [1/1] 2.91ns  loc: mat_mul/mat_mul.c:5
 ST_2: empty (9)  [1/1] 0.00ns
 .loopexit:4  %empty = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 100, i64 100, i64 100)
 
-ST_2: i_1 (10)  [1/1] 2.32ns  loc: mat_mul/mat_mul.c:5
-.loopexit:5  %i_1 = add i7 %i, 1
+ST_2: i_2 (10)  [1/1] 2.32ns  loc: mat_mul/mat_mul.c:5
+.loopexit:5  %i_2 = add i7 %i, 1
 
 ST_2: StgValue_12 (11)  [1/1] 0.00ns  loc: mat_mul/mat_mul.c:5
 .loopexit:6  br i1 %exitcond1, label %2, label %.preheader.preheader
@@ -123,31 +123,31 @@ ST_2: StgValue_14 (32)  [1/1] 0.00ns  loc: mat_mul/mat_mul.c:10
 
  <State 3>: 5.60ns
 ST_3: j (15)  [1/1] 0.00ns
-.preheader:0  %j = phi i7 [ %j_1, %1 ], [ 0, %.preheader.preheader ]
+.preheader:0  %j = phi i7 [ %j_2, %1 ], [ 0, %.preheader.preheader ]
 
 ST_3: j_cast1_cast (16)  [1/1] 0.00ns  loc: mat_mul/mat_mul.c:7
 .preheader:1  %j_cast1_cast = zext i7 %j to i14
 
-ST_3: tmp_1 (17)  [1/1] 2.34ns  loc: mat_mul/mat_mul.c:7
-.preheader:2  %tmp_1 = add i14 %phi_mul, %j_cast1_cast
+ST_3: tmp_5 (17)  [1/1] 2.34ns  loc: mat_mul/mat_mul.c:7
+.preheader:2  %tmp_5 = add i14 %phi_mul, %j_cast1_cast
 
-ST_3: tmp_1_cast (18)  [1/1] 0.00ns  loc: mat_mul/mat_mul.c:7
-.preheader:3  %tmp_1_cast = zext i14 %tmp_1 to i32
+ST_3: tmp_5_cast (18)  [1/1] 0.00ns  loc: mat_mul/mat_mul.c:7
+.preheader:3  %tmp_5_cast = zext i14 %tmp_5 to i32
 
 ST_3: src_addr (19)  [1/1] 0.00ns  loc: mat_mul/mat_mul.c:7
-.preheader:4  %src_addr = getelementptr [10000 x float]* %src, i32 0, i32 %tmp_1_cast
+.preheader:4  %src_addr = getelementptr [10000 x float]* %src, i32 0, i32 %tmp_5_cast
 
 ST_3: dest_addr (20)  [1/1] 0.00ns  loc: mat_mul/mat_mul.c:7
-.preheader:5  %dest_addr = getelementptr [10000 x float]* %dest, i32 0, i32 %tmp_1_cast
+.preheader:5  %dest_addr = getelementptr [10000 x float]* %dest, i32 0, i32 %tmp_5_cast
 
 ST_3: exitcond (21)  [1/1] 2.91ns  loc: mat_mul/mat_mul.c:6
 .preheader:6  %exitcond = icmp eq i7 %j, -28
 
-ST_3: empty_3 (22)  [1/1] 0.00ns
-.preheader:7  %empty_3 = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 100, i64 100, i64 100)
+ST_3: empty_5 (22)  [1/1] 0.00ns
+.preheader:7  %empty_5 = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 100, i64 100, i64 100)
 
-ST_3: j_1 (23)  [1/1] 2.32ns  loc: mat_mul/mat_mul.c:6
-.preheader:8  %j_1 = add i7 %j, 1
+ST_3: j_2 (23)  [1/1] 2.32ns  loc: mat_mul/mat_mul.c:6
+.preheader:8  %j_2 = add i7 %j, 1
 
 ST_3: StgValue_24 (24)  [1/1] 0.00ns  loc: mat_mul/mat_mul.c:6
 .preheader:9  br i1 %exitcond, label %.loopexit.loopexit, label %1
@@ -188,7 +188,7 @@ The critical path consists of the following:
  <State 3>: 5.6ns
 The critical path consists of the following:
 	'phi' operation ('j') with incoming values : ('j', mat_mul/mat_mul.c:6) [15]  (0 ns)
-	'add' operation ('tmp_1', mat_mul/mat_mul.c:7) [17]  (2.34 ns)
+	'add' operation ('tmp_5', mat_mul/mat_mul.c:7) [17]  (2.34 ns)
 	'getelementptr' operation ('src_addr', mat_mul/mat_mul.c:7) [19]  (0 ns)
 	'load' operation ('src_load', mat_mul/mat_mul.c:7) on array 'src' [26]  (3.25 ns)
 

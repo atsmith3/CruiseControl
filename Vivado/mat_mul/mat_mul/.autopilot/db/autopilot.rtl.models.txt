@@ -1,4 +1,6 @@
-mat_mul_wrap_matCbkb
-mat_mul_wrap_matBcud
+mat_mul_wrap_fmulbkb
+mat_mul_wrap_mac_cud
+mat_mul_wrap_matCdEe
 copy_mat
+mat_mul
 mat_mul_wrap

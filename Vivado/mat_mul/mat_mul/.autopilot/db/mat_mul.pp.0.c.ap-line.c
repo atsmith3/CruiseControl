@@ -219,7 +219,8 @@ void mat_mul(matrix matA, matrix matB, matrix matC) {
  for(i = 0; i < 100; i++){
   for(j = 0; j < 100; j++){
    for(k = 0; k < 100; k++){
-    matC[i][j] = matA[i][k] * matB[k][j];
+#pragma HLS UNROLL factor=10
+ matC[i][j] = matA[i][k] * matB[k][j];
    }
   }
  }
@@ -238,6 +239,7 @@ void mat_mul_wrap(matrix matA, matrix matB, matrix matC) {
  copy_mat(matB, matB_local);
 #pragma empty_line
  /* Matrix Mult */
+ mat_mul(matA_local, matB_local, matC_local);
 #pragma empty_line
  /* Writeback */
  copy_mat(matC_local, matC);

@@ -34,6 +34,7 @@ void mat_mul(matrix matA, matrix matB, matrix matC) {
  for(i = 0; i < 100; i++){
   for(j = 0; j < 100; j++){
    for(k = 0; k < 100; k++){
+#pragma HLS UNROLL factor=10
     matC[i][j] = matA[i][k] * matB[k][j];
    }
   }

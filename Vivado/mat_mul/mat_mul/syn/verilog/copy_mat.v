@@ -54,21 +54,21 @@ wire    ap_CS_fsm_state1;
 wire   [13:0] next_mul_fu_78_p2;
 reg   [13:0] next_mul_reg_124;
 wire    ap_CS_fsm_state2;
-wire   [6:0] i_1_fu_90_p2;
-reg   [6:0] i_1_reg_132;
+wire   [6:0] i_2_fu_90_p2;
+reg   [6:0] i_2_reg_132;
 wire    ap_CS_fsm_state3;
 reg   [13:0] dest_addr_reg_142;
-wire   [6:0] j_1_fu_118_p2;
-reg   [6:0] j_1_reg_150;
+wire   [6:0] j_2_fu_118_p2;
+reg   [6:0] j_2_reg_150;
 reg   [6:0] i_reg_44;
 wire   [0:0] exitcond_fu_112_p2;
 reg   [13:0] phi_mul_reg_55;
 reg   [6:0] j_reg_67;
 wire    ap_CS_fsm_state4;
 wire   [0:0] exitcond1_fu_84_p2;
-wire   [31:0] tmp_1_cast_fu_106_p1;
+wire   [31:0] tmp_5_cast_fu_106_p1;
 wire   [13:0] j_cast1_cast_fu_96_p1;
-wire   [13:0] tmp_1_fu_100_p2;
+wire   [13:0] tmp_5_fu_100_p2;
 reg   [3:0] ap_NS_fsm;
 
 // power-on initialization
@@ -86,7 +86,7 @@ end
 
 always @ (posedge ap_clk) begin
     if (((1'b1 == ap_CS_fsm_state3) & (exitcond_fu_112_p2 == 1'd1))) begin
-        i_reg_44 <= i_1_reg_132;
+        i_reg_44 <= i_2_reg_132;
     end else if (((1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b1))) begin
         i_reg_44 <= 7'd0;
     end
@@ -96,7 +96,7 @@ always @ (posedge ap_clk) begin
     if (((1'b1 == ap_CS_fsm_state2) & (exitcond1_fu_84_p2 == 1'd0))) begin
         j_reg_67 <= 7'd0;
     end else if ((1'b1 == ap_CS_fsm_state4)) begin
-        j_reg_67 <= j_1_reg_150;
+        j_reg_67 <= j_2_reg_150;
     end
 end
 
@@ -110,14 +110,14 @@ end
 
 always @ (posedge ap_clk) begin
     if ((1'b1 == ap_CS_fsm_state3)) begin
-        dest_addr_reg_142 <= tmp_1_cast_fu_106_p1;
-        j_1_reg_150 <= j_1_fu_118_p2;
+        dest_addr_reg_142 <= tmp_5_cast_fu_106_p1;
+        j_2_reg_150 <= j_2_fu_118_p2;
     end
 end
 
 always @ (posedge ap_clk) begin
     if ((1'b1 == ap_CS_fsm_state2)) begin
-        i_1_reg_132 <= i_1_fu_90_p2;
+        i_2_reg_132 <= i_2_fu_90_p2;
         next_mul_reg_124 <= next_mul_fu_78_p2;
     end
 end
@@ -218,18 +218,18 @@ assign exitcond1_fu_84_p2 = ((i_reg_44 == 7'd100) ? 1'b1 : 1'b0);
 
 assign exitcond_fu_112_p2 = ((j_reg_67 == 7'd100) ? 1'b1 : 1'b0);
 
-assign i_1_fu_90_p2 = (i_reg_44 + 7'd1);
+assign i_2_fu_90_p2 = (i_reg_44 + 7'd1);
 
-assign j_1_fu_118_p2 = (j_reg_67 + 7'd1);
+assign j_2_fu_118_p2 = (j_reg_67 + 7'd1);
 
 assign j_cast1_cast_fu_96_p1 = j_reg_67;
 
 assign next_mul_fu_78_p2 = (phi_mul_reg_55 + 14'd100);
 
-assign src_address0 = tmp_1_cast_fu_106_p1;
+assign src_address0 = tmp_5_cast_fu_106_p1;
 
-assign tmp_1_cast_fu_106_p1 = tmp_1_fu_100_p2;
+assign tmp_5_cast_fu_106_p1 = tmp_5_fu_100_p2;
 
-assign tmp_1_fu_100_p2 = (phi_mul_reg_55 + j_cast1_cast_fu_96_p1);
+assign tmp_5_fu_100_p2 = (phi_mul_reg_55 + j_cast1_cast_fu_96_p1);
 
 endmodule //copy_mat

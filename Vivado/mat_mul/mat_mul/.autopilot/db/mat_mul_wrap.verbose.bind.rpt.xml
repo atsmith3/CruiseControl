@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vivado HLS Report for 'mat_mul_wrap'" level="0">
-<item name = "Date">Thu Dec 13 22:27:51 2018
+<item name = "Date">Sun Dec 16 18:08:39 2018
 </item>
 <item name = "Version">2017.2 (Build 1909853 on Thu Jun 15 18:55:24 MDT 2017)</item>
 <item name = "Project">mat_mul</item>
@@ -15,7 +15,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="4">Clock, Target, Estimated, Uncertainty</keys>
-<column name="ap_clk">10.00, 6.51, 1.25</column>
+<column name="ap_clk">10.00, 8.70, 1.25</column>
 </table>
 </item>
 </section>
@@ -24,16 +24,16 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="6">, min, max, min, max, Type</keys>
-<column name="">20202, 20202, 20203, 20203, none</column>
+<column name="">860608, 860608, 860609, 860609, none</column>
 </table>
 </item>
 <item name = "Detail">
 <section name = "" level="1">
 <item name = "Instance"><table name="" hasTotal="0">
 <keys size="7">Instance, Module, min, max, min, max, Type</keys>
-<column name="grp_copy_mat_fu_28">copy_mat, 20201, 20201, 20201, 20201, none</column>
-<column name="grp_copy_mat_fu_36">copy_mat, 20201, 20201, 20201, 20201, none</column>
-<column name="grp_copy_mat_fu_44">copy_mat, 20201, 20201, 20201, 20201, none</column>
+<column name="grp_mat_mul_fu_30">mat_mul, 820201, 820201, 820201, 820201, none</column>
+<column name="grp_copy_mat_fu_37">copy_mat, 20201, 20201, 20201, 20201, none</column>
+<column name="grp_copy_mat_fu_45">copy_mat, 20201, 20201, 20201, 20201, none</column>
 </table>
 </item>
 <item name = "Loop"><table name="" hasTotal="0">

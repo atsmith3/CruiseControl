@@ -7,7 +7,7 @@
 
 `timescale 1 ns / 1 ps 
 
-(* CORE_GENERATION_INFO="mat_mul_wrap,hls_ip_2017_2,{HLS_INPUT_TYPE=c,HLS_INPUT_FLOAT=1,HLS_INPUT_FIXED=0,HLS_INPUT_PART=xc7z020clg484-1,HLS_INPUT_CLOCK=10.000000,HLS_INPUT_ARCH=others,HLS_SYN_CLOCK=6.508000,HLS_SYN_LAT=20202,HLS_SYN_TPT=none,HLS_SYN_MEM=96,HLS_SYN_DSP=0,HLS_SYN_FF=665,HLS_SYN_LUT=389}" *)
+(* CORE_GENERATION_INFO="mat_mul_wrap,hls_ip_2017_2,{HLS_INPUT_TYPE=c,HLS_INPUT_FLOAT=1,HLS_INPUT_FIXED=0,HLS_INPUT_PART=xc7z020clg484-1,HLS_INPUT_CLOCK=10.000000,HLS_INPUT_ARCH=others,HLS_SYN_CLOCK=8.695667,HLS_SYN_LAT=860608,HLS_SYN_TPT=none,HLS_SYN_MEM=96,HLS_SYN_DSP=4,HLS_SYN_FF=1063,HLS_SYN_LUT=988}" *)
 
 module mat_mul_wrap (
         ap_clk,
@@ -28,8 +28,12 @@ module mat_mul_wrap (
         matC_d0
 );
 
-parameter    ap_ST_fsm_state1 = 2'd1;
-parameter    ap_ST_fsm_state2 = 2'd2;
+parameter    ap_ST_fsm_state1 = 6'd1;
+parameter    ap_ST_fsm_state2 = 6'd2;
+parameter    ap_ST_fsm_state3 = 6'd4;
+parameter    ap_ST_fsm_state4 = 6'd8;
+parameter    ap_ST_fsm_state5 = 6'd16;
+parameter    ap_ST_fsm_state6 = 6'd32;
 
 input   ap_clk;
 input   ap_rst;
@@ -51,139 +55,167 @@ output  [31:0] matC_d0;
 reg ap_done;
 reg ap_idle;
 reg ap_ready;
+reg matA_ce0;
+reg matC_ce0;
+reg matC_we0;
 
-(* fsm_encoding = "none" *) reg   [1:0] ap_CS_fsm;
+(* fsm_encoding = "none" *) reg   [5:0] ap_CS_fsm;
 wire    ap_CS_fsm_state1;
+reg   [13:0] matC_local_address0;
+reg    matC_local_ce0;
+reg    matC_local_we0;
 wire   [31:0] matC_local_q0;
-wire    grp_copy_mat_fu_28_ap_start;
-wire    grp_copy_mat_fu_28_ap_done;
-wire    grp_copy_mat_fu_28_ap_idle;
-wire    grp_copy_mat_fu_28_ap_ready;
-wire   [13:0] grp_copy_mat_fu_28_src_address0;
-wire    grp_copy_mat_fu_28_src_ce0;
-wire   [13:0] grp_copy_mat_fu_28_dest_address0;
-wire    grp_copy_mat_fu_28_dest_ce0;
-wire    grp_copy_mat_fu_28_dest_we0;
-wire   [31:0] grp_copy_mat_fu_28_dest_d0;
-wire    grp_copy_mat_fu_36_ap_start;
-wire    grp_copy_mat_fu_36_ap_done;
-wire    grp_copy_mat_fu_36_ap_idle;
-wire    grp_copy_mat_fu_36_ap_ready;
-wire   [13:0] grp_copy_mat_fu_36_src_address0;
-wire    grp_copy_mat_fu_36_src_ce0;
-wire   [13:0] grp_copy_mat_fu_36_dest_address0;
-wire    grp_copy_mat_fu_36_dest_ce0;
-wire    grp_copy_mat_fu_36_dest_we0;
-wire   [31:0] grp_copy_mat_fu_36_dest_d0;
-wire    grp_copy_mat_fu_44_ap_start;
-wire    grp_copy_mat_fu_44_ap_done;
-wire    grp_copy_mat_fu_44_ap_idle;
-wire    grp_copy_mat_fu_44_ap_ready;
-wire   [13:0] grp_copy_mat_fu_44_src_address0;
-wire    grp_copy_mat_fu_44_src_ce0;
-wire   [13:0] grp_copy_mat_fu_44_dest_address0;
-wire    grp_copy_mat_fu_44_dest_ce0;
-wire    grp_copy_mat_fu_44_dest_we0;
-wire   [31:0] grp_copy_mat_fu_44_dest_d0;
-reg    ap_reg_grp_copy_mat_fu_28_ap_start;
+reg   [13:0] matB_local_address0;
+reg    matB_local_ce0;
+reg    matB_local_we0;
+wire   [31:0] matB_local_q0;
+reg   [13:0] matA_local_address0;
+reg    matA_local_ce0;
+reg    matA_local_we0;
+wire   [31:0] matA_local_q0;
+wire    grp_mat_mul_fu_30_ap_start;
+wire    grp_mat_mul_fu_30_ap_done;
+wire    grp_mat_mul_fu_30_ap_idle;
+wire    grp_mat_mul_fu_30_ap_ready;
+wire   [13:0] grp_mat_mul_fu_30_matA_address0;
+wire    grp_mat_mul_fu_30_matA_ce0;
+wire   [13:0] grp_mat_mul_fu_30_matB_address0;
+wire    grp_mat_mul_fu_30_matB_ce0;
+wire   [13:0] grp_mat_mul_fu_30_matC_address0;
+wire    grp_mat_mul_fu_30_matC_ce0;
+wire    grp_mat_mul_fu_30_matC_we0;
+wire   [31:0] grp_mat_mul_fu_30_matC_d0;
+wire    grp_copy_mat_fu_37_ap_start;
+wire    grp_copy_mat_fu_37_ap_done;
+wire    grp_copy_mat_fu_37_ap_idle;
+wire    grp_copy_mat_fu_37_ap_ready;
+wire   [13:0] grp_copy_mat_fu_37_src_address0;
+wire    grp_copy_mat_fu_37_src_ce0;
+reg   [31:0] grp_copy_mat_fu_37_src_q0;
+wire   [13:0] grp_copy_mat_fu_37_dest_address0;
+wire    grp_copy_mat_fu_37_dest_ce0;
+wire    grp_copy_mat_fu_37_dest_we0;
+wire   [31:0] grp_copy_mat_fu_37_dest_d0;
+wire    grp_copy_mat_fu_45_ap_start;
+wire    grp_copy_mat_fu_45_ap_done;
+wire    grp_copy_mat_fu_45_ap_idle;
+wire    grp_copy_mat_fu_45_ap_ready;
+wire   [13:0] grp_copy_mat_fu_45_src_address0;
+wire    grp_copy_mat_fu_45_src_ce0;
+wire   [13:0] grp_copy_mat_fu_45_dest_address0;
+wire    grp_copy_mat_fu_45_dest_ce0;
+wire    grp_copy_mat_fu_45_dest_we0;
+wire   [31:0] grp_copy_mat_fu_45_dest_d0;
+reg    ap_reg_grp_mat_mul_fu_30_ap_start;
+wire    ap_CS_fsm_state3;
+wire    ap_CS_fsm_state4;
+reg    ap_reg_grp_copy_mat_fu_37_ap_start;
+wire    ap_CS_fsm_state5;
 wire    ap_CS_fsm_state2;
-reg    ap_reg_grp_copy_mat_fu_36_ap_start;
-reg    ap_reg_grp_copy_mat_fu_44_ap_start;
+wire    ap_CS_fsm_state6;
+reg    ap_reg_grp_copy_mat_fu_45_ap_start;
+reg   [5:0] ap_NS_fsm;
 reg    ap_block_state2_on_subcall_done;
-reg   [1:0] ap_NS_fsm;
 
 // power-on initialization
 initial begin
-#0 ap_CS_fsm = 2'd1;
-#0 ap_reg_grp_copy_mat_fu_28_ap_start = 1'b0;
-#0 ap_reg_grp_copy_mat_fu_36_ap_start = 1'b0;
-#0 ap_reg_grp_copy_mat_fu_44_ap_start = 1'b0;
+#0 ap_CS_fsm = 6'd1;
+#0 ap_reg_grp_mat_mul_fu_30_ap_start = 1'b0;
+#0 ap_reg_grp_copy_mat_fu_37_ap_start = 1'b0;
+#0 ap_reg_grp_copy_mat_fu_45_ap_start = 1'b0;
 end
 
-mat_mul_wrap_matCbkb #(
+mat_mul_wrap_matCdEe #(
     .DataWidth( 32 ),
     .AddressRange( 10000 ),
     .AddressWidth( 14 ))
 matC_local_U(
     .clk(ap_clk),
     .reset(ap_rst),
-    .address0(grp_copy_mat_fu_44_src_address0),
-    .ce0(grp_copy_mat_fu_44_src_ce0),
+    .address0(matC_local_address0),
+    .ce0(matC_local_ce0),
+    .we0(matC_local_we0),
+    .d0(grp_mat_mul_fu_30_matC_d0),
     .q0(matC_local_q0)
 );
 
-mat_mul_wrap_matBcud #(
+mat_mul_wrap_matCdEe #(
     .DataWidth( 32 ),
     .AddressRange( 10000 ),
     .AddressWidth( 14 ))
 matB_local_U(
     .clk(ap_clk),
     .reset(ap_rst),
-    .address0(grp_copy_mat_fu_36_dest_address0),
-    .ce0(grp_copy_mat_fu_36_dest_ce0),
-    .we0(grp_copy_mat_fu_36_dest_we0),
-    .d0(grp_copy_mat_fu_36_dest_d0)
+    .address0(matB_local_address0),
+    .ce0(matB_local_ce0),
+    .we0(matB_local_we0),
+    .d0(grp_copy_mat_fu_45_dest_d0),
+    .q0(matB_local_q0)
 );
 
-mat_mul_wrap_matBcud #(
+mat_mul_wrap_matCdEe #(
     .DataWidth( 32 ),
     .AddressRange( 10000 ),
     .AddressWidth( 14 ))
 matA_local_U(
     .clk(ap_clk),
     .reset(ap_rst),
-    .address0(grp_copy_mat_fu_28_dest_address0),
-    .ce0(grp_copy_mat_fu_28_dest_ce0),
-    .we0(grp_copy_mat_fu_28_dest_we0),
-    .d0(grp_copy_mat_fu_28_dest_d0)
+    .address0(matA_local_address0),
+    .ce0(matA_local_ce0),
+    .we0(matA_local_we0),
+    .d0(grp_copy_mat_fu_37_dest_d0),
+    .q0(matA_local_q0)
 );
 
-copy_mat grp_copy_mat_fu_28(
+mat_mul grp_mat_mul_fu_30(
     .ap_clk(ap_clk),
     .ap_rst(ap_rst),
-    .ap_start(grp_copy_mat_fu_28_ap_start),
-    .ap_done(grp_copy_mat_fu_28_ap_done),
-    .ap_idle(grp_copy_mat_fu_28_ap_idle),
-    .ap_ready(grp_copy_mat_fu_28_ap_ready),
-    .src_address0(grp_copy_mat_fu_28_src_address0),
-    .src_ce0(grp_copy_mat_fu_28_src_ce0),
-    .src_q0(matA_q0),
-    .dest_address0(grp_copy_mat_fu_28_dest_address0),
-    .dest_ce0(grp_copy_mat_fu_28_dest_ce0),
-    .dest_we0(grp_copy_mat_fu_28_dest_we0),
-    .dest_d0(grp_copy_mat_fu_28_dest_d0)
+    .ap_start(grp_mat_mul_fu_30_ap_start),
+    .ap_done(grp_mat_mul_fu_30_ap_done),
+    .ap_idle(grp_mat_mul_fu_30_ap_idle),
+    .ap_ready(grp_mat_mul_fu_30_ap_ready),
+    .matA_address0(grp_mat_mul_fu_30_matA_address0),
+    .matA_ce0(grp_mat_mul_fu_30_matA_ce0),
+    .matA_q0(matA_local_q0),
+    .matB_address0(grp_mat_mul_fu_30_matB_address0),
+    .matB_ce0(grp_mat_mul_fu_30_matB_ce0),
+    .matB_q0(matB_local_q0),
+    .matC_address0(grp_mat_mul_fu_30_matC_address0),
+    .matC_ce0(grp_mat_mul_fu_30_matC_ce0),
+    .matC_we0(grp_mat_mul_fu_30_matC_we0),
+    .matC_d0(grp_mat_mul_fu_30_matC_d0)
 );
 
-copy_mat grp_copy_mat_fu_36(
+copy_mat grp_copy_mat_fu_37(
     .ap_clk(ap_clk),
     .ap_rst(ap_rst),
-    .ap_start(grp_copy_mat_fu_36_ap_start),
-    .ap_done(grp_copy_mat_fu_36_ap_done),
-    .ap_idle(grp_copy_mat_fu_36_ap_idle),
-    .ap_ready(grp_copy_mat_fu_36_ap_ready),
-    .src_address0(grp_copy_mat_fu_36_src_address0),
-    .src_ce0(grp_copy_mat_fu_36_src_ce0),
+    .ap_start(grp_copy_mat_fu_37_ap_start),
+    .ap_done(grp_copy_mat_fu_37_ap_done),
+    .ap_idle(grp_copy_mat_fu_37_ap_idle),
+    .ap_ready(grp_copy_mat_fu_37_ap_ready),
+    .src_address0(grp_copy_mat_fu_37_src_address0),
+    .src_ce0(grp_copy_mat_fu_37_src_ce0),
+    .src_q0(grp_copy_mat_fu_37_src_q0),
+    .dest_address0(grp_copy_mat_fu_37_dest_address0),
+    .dest_ce0(grp_copy_mat_fu_37_dest_ce0),
+    .dest_we0(grp_copy_mat_fu_37_dest_we0),
+    .dest_d0(grp_copy_mat_fu_37_dest_d0)
+);
+
+copy_mat grp_copy_mat_fu_45(
+    .ap_clk(ap_clk),
+    .ap_rst(ap_rst),
+    .ap_start(grp_copy_mat_fu_45_ap_start),
+    .ap_done(grp_copy_mat_fu_45_ap_done),
+    .ap_idle(grp_copy_mat_fu_45_ap_idle),
+    .ap_ready(grp_copy_mat_fu_45_ap_ready),
+    .src_address0(grp_copy_mat_fu_45_src_address0),
+    .src_ce0(grp_copy_mat_fu_45_src_ce0),
     .src_q0(matB_q0),
-    .dest_address0(grp_copy_mat_fu_36_dest_address0),
-    .dest_ce0(grp_copy_mat_fu_36_dest_ce0),
-    .dest_we0(grp_copy_mat_fu_36_dest_we0),
-    .dest_d0(grp_copy_mat_fu_36_dest_d0)
-);
-
-copy_mat grp_copy_mat_fu_44(
-    .ap_clk(ap_clk),
-    .ap_rst(ap_rst),
-    .ap_start(grp_copy_mat_fu_44_ap_start),
-    .ap_done(grp_copy_mat_fu_44_ap_done),
-    .ap_idle(grp_copy_mat_fu_44_ap_idle),
-    .ap_ready(grp_copy_mat_fu_44_ap_ready),
-    .src_address0(grp_copy_mat_fu_44_src_address0),
-    .src_ce0(grp_copy_mat_fu_44_src_ce0),
-    .src_q0(matC_local_q0),
-    .dest_address0(grp_copy_mat_fu_44_dest_address0),
-    .dest_ce0(grp_copy_mat_fu_44_dest_ce0),
-    .dest_we0(grp_copy_mat_fu_44_dest_we0),
-    .dest_d0(grp_copy_mat_fu_44_dest_d0)
+    .dest_address0(grp_copy_mat_fu_45_dest_address0),
+    .dest_ce0(grp_copy_mat_fu_45_dest_ce0),
+    .dest_we0(grp_copy_mat_fu_45_dest_we0),
+    .dest_d0(grp_copy_mat_fu_45_dest_d0)
 );
 
 always @ (posedge ap_clk) begin
@@ -196,42 +228,42 @@ end
 
 always @ (posedge ap_clk) begin
     if (ap_rst == 1'b1) begin
-        ap_reg_grp_copy_mat_fu_28_ap_start <= 1'b0;
+        ap_reg_grp_copy_mat_fu_37_ap_start <= 1'b0;
     end else begin
-        if (((1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b1))) begin
-            ap_reg_grp_copy_mat_fu_28_ap_start <= 1'b1;
-        end else if ((1'b1 == grp_copy_mat_fu_28_ap_ready)) begin
-            ap_reg_grp_copy_mat_fu_28_ap_start <= 1'b0;
+        if ((((1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b1)) | (1'b1 == ap_CS_fsm_state5))) begin
+            ap_reg_grp_copy_mat_fu_37_ap_start <= 1'b1;
+        end else if ((1'b1 == grp_copy_mat_fu_37_ap_ready)) begin
+            ap_reg_grp_copy_mat_fu_37_ap_start <= 1'b0;
         end
     end
 end
 
 always @ (posedge ap_clk) begin
     if (ap_rst == 1'b1) begin
-        ap_reg_grp_copy_mat_fu_36_ap_start <= 1'b0;
+        ap_reg_grp_copy_mat_fu_45_ap_start <= 1'b0;
     end else begin
         if (((1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b1))) begin
-            ap_reg_grp_copy_mat_fu_36_ap_start <= 1'b1;
-        end else if ((1'b1 == grp_copy_mat_fu_36_ap_ready)) begin
-            ap_reg_grp_copy_mat_fu_36_ap_start <= 1'b0;
+            ap_reg_grp_copy_mat_fu_45_ap_start <= 1'b1;
+        end else if ((1'b1 == grp_copy_mat_fu_45_ap_ready)) begin
+            ap_reg_grp_copy_mat_fu_45_ap_start <= 1'b0;
         end
     end
 end
 
 always @ (posedge ap_clk) begin
     if (ap_rst == 1'b1) begin
-        ap_reg_grp_copy_mat_fu_44_ap_start <= 1'b0;
+        ap_reg_grp_mat_mul_fu_30_ap_start <= 1'b0;
     end else begin
-        if (((1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b1))) begin
-            ap_reg_grp_copy_mat_fu_44_ap_start <= 1'b1;
-        end else if ((1'b1 == grp_copy_mat_fu_44_ap_ready)) begin
-            ap_reg_grp_copy_mat_fu_44_ap_start <= 1'b0;
+        if ((1'b1 == ap_CS_fsm_state3)) begin
+            ap_reg_grp_mat_mul_fu_30_ap_start <= 1'b1;
+        end else if ((1'b1 == grp_mat_mul_fu_30_ap_ready)) begin
+            ap_reg_grp_mat_mul_fu_30_ap_start <= 1'b0;
         end
     end
 end
 
 always @ (*) begin
-    if (((1'b1 == ap_CS_fsm_state2) & (ap_block_state2_on_subcall_done == 1'b0))) begin
+    if (((1'b1 == ap_CS_fsm_state6) & (grp_copy_mat_fu_37_ap_done == 1'b1))) begin
         ap_done = 1'b1;
     end else begin
         ap_done = 1'b0;
@@ -247,10 +279,128 @@ always @ (*) begin
 end
 
 always @ (*) begin
-    if (((1'b1 == ap_CS_fsm_state2) & (ap_block_state2_on_subcall_done == 1'b0))) begin
+    if (((1'b1 == ap_CS_fsm_state6) & (grp_copy_mat_fu_37_ap_done == 1'b1))) begin
         ap_ready = 1'b1;
     end else begin
         ap_ready = 1'b0;
+    end
+end
+
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state6)) begin
+        grp_copy_mat_fu_37_src_q0 = matC_local_q0;
+    end else if ((1'b1 == ap_CS_fsm_state2)) begin
+        grp_copy_mat_fu_37_src_q0 = matA_q0;
+    end else begin
+        grp_copy_mat_fu_37_src_q0 = 'bx;
+    end
+end
+
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state2)) begin
+        matA_ce0 = grp_copy_mat_fu_37_src_ce0;
+    end else begin
+        matA_ce0 = 1'b0;
+    end
+end
+
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state2)) begin
+        matA_local_address0 = grp_copy_mat_fu_37_dest_address0;
+    end else if ((1'b1 == ap_CS_fsm_state4)) begin
+        matA_local_address0 = grp_mat_mul_fu_30_matA_address0;
+    end else begin
+        matA_local_address0 = 'bx;
+    end
+end
+
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state2)) begin
+        matA_local_ce0 = grp_copy_mat_fu_37_dest_ce0;
+    end else if ((1'b1 == ap_CS_fsm_state4)) begin
+        matA_local_ce0 = grp_mat_mul_fu_30_matA_ce0;
+    end else begin
+        matA_local_ce0 = 1'b0;
+    end
+end
+
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state2)) begin
+        matA_local_we0 = grp_copy_mat_fu_37_dest_we0;
+    end else begin
+        matA_local_we0 = 1'b0;
+    end
+end
+
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state2)) begin
+        matB_local_address0 = grp_copy_mat_fu_45_dest_address0;
+    end else if ((1'b1 == ap_CS_fsm_state4)) begin
+        matB_local_address0 = grp_mat_mul_fu_30_matB_address0;
+    end else begin
+        matB_local_address0 = 'bx;
+    end
+end
+
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state2)) begin
+        matB_local_ce0 = grp_copy_mat_fu_45_dest_ce0;
+    end else if ((1'b1 == ap_CS_fsm_state4)) begin
+        matB_local_ce0 = grp_mat_mul_fu_30_matB_ce0;
+    end else begin
+        matB_local_ce0 = 1'b0;
+    end
+end
+
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state2)) begin
+        matB_local_we0 = grp_copy_mat_fu_45_dest_we0;
+    end else begin
+        matB_local_we0 = 1'b0;
+    end
+end
+
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state6)) begin
+        matC_ce0 = grp_copy_mat_fu_37_dest_ce0;
+    end else begin
+        matC_ce0 = 1'b0;
+    end
+end
+
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state6)) begin
+        matC_local_address0 = grp_copy_mat_fu_37_src_address0;
+    end else if ((1'b1 == ap_CS_fsm_state4)) begin
+        matC_local_address0 = grp_mat_mul_fu_30_matC_address0;
+    end else begin
+        matC_local_address0 = 'bx;
+    end
+end
+
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state6)) begin
+        matC_local_ce0 = grp_copy_mat_fu_37_src_ce0;
+    end else if ((1'b1 == ap_CS_fsm_state4)) begin
+        matC_local_ce0 = grp_mat_mul_fu_30_matC_ce0;
+    end else begin
+        matC_local_ce0 = 1'b0;
+    end
+end
+
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state4)) begin
+        matC_local_we0 = grp_mat_mul_fu_30_matC_we0;
+    end else begin
+        matC_local_we0 = 1'b0;
+    end
+end
+
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state6)) begin
+        matC_we0 = grp_copy_mat_fu_37_dest_we0;
+    end else begin
+        matC_we0 = 1'b0;
     end
 end
 
@@ -265,9 +415,29 @@ always @ (*) begin
         end
         ap_ST_fsm_state2 : begin
             if (((1'b1 == ap_CS_fsm_state2) & (ap_block_state2_on_subcall_done == 1'b0))) begin
-                ap_NS_fsm = ap_ST_fsm_state1;
+                ap_NS_fsm = ap_ST_fsm_state3;
             end else begin
                 ap_NS_fsm = ap_ST_fsm_state2;
+            end
+        end
+        ap_ST_fsm_state3 : begin
+            ap_NS_fsm = ap_ST_fsm_state4;
+        end
+        ap_ST_fsm_state4 : begin
+            if (((1'b1 == ap_CS_fsm_state4) & (grp_mat_mul_fu_30_ap_done == 1'b1))) begin
+                ap_NS_fsm = ap_ST_fsm_state5;
+            end else begin
+                ap_NS_fsm = ap_ST_fsm_state4;
+            end
+        end
+        ap_ST_fsm_state5 : begin
+            ap_NS_fsm = ap_ST_fsm_state6;
+        end
+        ap_ST_fsm_state6 : begin
+            if (((1'b1 == ap_CS_fsm_state6) & (grp_copy_mat_fu_37_ap_done == 1'b1))) begin
+                ap_NS_fsm = ap_ST_fsm_state1;
+            end else begin
+                ap_NS_fsm = ap_ST_fsm_state6;
             end
         end
         default : begin
@@ -280,30 +450,32 @@ assign ap_CS_fsm_state1 = ap_CS_fsm[32'd0];
 
 assign ap_CS_fsm_state2 = ap_CS_fsm[32'd1];
 
+assign ap_CS_fsm_state3 = ap_CS_fsm[32'd2];
+
+assign ap_CS_fsm_state4 = ap_CS_fsm[32'd3];
+
+assign ap_CS_fsm_state5 = ap_CS_fsm[32'd4];
+
+assign ap_CS_fsm_state6 = ap_CS_fsm[32'd5];
+
 always @ (*) begin
-    ap_block_state2_on_subcall_done = ((1'b0 == grp_copy_mat_fu_28_ap_done) | (1'b0 == grp_copy_mat_fu_36_ap_done) | (1'b0 == grp_copy_mat_fu_44_ap_done));
+    ap_block_state2_on_subcall_done = ((1'b0 == grp_copy_mat_fu_37_ap_done) | (1'b0 == grp_copy_mat_fu_45_ap_done));
 end
 
-assign grp_copy_mat_fu_28_ap_start = ap_reg_grp_copy_mat_fu_28_ap_start;
+assign grp_copy_mat_fu_37_ap_start = ap_reg_grp_copy_mat_fu_37_ap_start;
 
-assign grp_copy_mat_fu_36_ap_start = ap_reg_grp_copy_mat_fu_36_ap_start;
+assign grp_copy_mat_fu_45_ap_start = ap_reg_grp_copy_mat_fu_45_ap_start;
 
-assign grp_copy_mat_fu_44_ap_start = ap_reg_grp_copy_mat_fu_44_ap_start;
+assign grp_mat_mul_fu_30_ap_start = ap_reg_grp_mat_mul_fu_30_ap_start;
 
-assign matA_address0 = grp_copy_mat_fu_28_src_address0;
+assign matA_address0 = grp_copy_mat_fu_37_src_address0;
 
-assign matA_ce0 = grp_copy_mat_fu_28_src_ce0;
+assign matB_address0 = grp_copy_mat_fu_45_src_address0;
 
-assign matB_address0 = grp_copy_mat_fu_36_src_address0;
+assign matB_ce0 = grp_copy_mat_fu_45_src_ce0;
 
-assign matB_ce0 = grp_copy_mat_fu_36_src_ce0;
+assign matC_address0 = grp_copy_mat_fu_37_dest_address0;
 
-assign matC_address0 = grp_copy_mat_fu_44_dest_address0;
-
-assign matC_ce0 = grp_copy_mat_fu_44_dest_ce0;
-
-assign matC_d0 = grp_copy_mat_fu_44_dest_d0;
-
-assign matC_we0 = grp_copy_mat_fu_44_dest_we0;
+assign matC_d0 = grp_copy_mat_fu_37_dest_d0;
 
 endmodule //mat_mul_wrap

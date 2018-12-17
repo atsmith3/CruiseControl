@@ -11,9 +11,7 @@
   </errorLogs>
   <warningLogs>
     <logs>
-      <synLog>
-        <logs message="WARNING: [RTMG 210-274] Memory 'mat_mul_wrap_matCbkb' is read-only, switch it to a ROM." projectName="mat_mul" solutionName="mat_mul" date="2018-12-13T22:27:52.735-0600" type="Warning"/>
-      </synLog>
+      <synLog/>
       <simLog/>
       <mgLog/>
       <packageLog/>

@@ -33,6 +33,7 @@ void mat_mul_wrap(matrix matA, matrix matB, matrix matC) {
 	copy_mat(matB, matB_local);
 
 	/* Matrix Mult */
+	mat_mul(matA_local, matB_local, matC_local);
 
 	/* Writeback */
 	copy_mat(matC_local, matC);

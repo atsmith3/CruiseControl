@@ -3,7 +3,7 @@
 ================================================================
 == Vivado HLS Report for 'mat_mul_wrap'
 ================================================================
-* Date:           Thu Dec 13 22:27:51 2018
+* Date:           Sun Dec 16 18:08:39 2018
 
 * Version:        2017.2 (Build 1909853 on Thu Jun 15 18:55:24 MDT 2017)
 * Project:        mat_mul
@@ -20,17 +20,17 @@
     +--------+-------+----------+------------+
     |  Clock | Target| Estimated| Uncertainty|
     +--------+-------+----------+------------+
-    |ap_clk  |  10.00|      6.51|        1.25|
+    |ap_clk  |  10.00|      8.70|        1.25|
     +--------+-------+----------+------------+
 
 + Latency (clock cycles): 
     * Summary: 
-    +-------+-------+-------+-------+---------+
-    |    Latency    |    Interval   | Pipeline|
-    |  min  |  max  |  min  |  max  |   Type  |
-    +-------+-------+-------+-------+---------+
-    |  20202|  20202|  20203|  20203|   none  |
-    +-------+-------+-------+-------+---------+
+    +--------+--------+--------+--------+---------+
+    |     Latency     |     Interval    | Pipeline|
+    |   min  |   max  |   min  |   max  |   Type  |
+    +--------+--------+--------+--------+---------+
+    |  860608|  860608|  860609|  860609|   none  |
+    +--------+--------+--------+--------+---------+
 
     + Detail: 
         * Instance: 
@@ -65,7 +65,7 @@ IsGatedGlobalClock: 0
 ============================================================
 + Verbose Summary: Schedule
 ============================================================
-* Number of FSM states: 2
+* Number of FSM states: 6
 * Pipeline: 0
 * Dataflow Pipeline: 0
 
@@ -73,52 +73,74 @@ IsGatedGlobalClock: 0
 1 --> 
 	2  / true
 2 --> 
+	3  / true
+3 --> 
+	4  / true
+4 --> 
+	5  / true
+5 --> 
+	6  / true
+6 --> 
 * FSM state operations: 
 
  <State 1>: 1.77ns
-ST_1: matC_local (8)  [1/1] 0.00ns  loc: mat_mul/mat_mul.c:27
+ST_1: matC_local (8)  [1/1] 0.00ns  loc: mat_mul/mat_mul.c:28
 :4  %matC_local = alloca [10000 x float], align 4
 
-ST_1: matB_local (9)  [1/1] 0.00ns
+ST_1: matB_local (9)  [1/1] 0.00ns  loc: mat_mul/mat_mul.c:29
 :5  %matB_local = alloca [10000 x float], align 4
 
-ST_1: matA_local (10)  [1/1] 0.00ns
+ST_1: matA_local (10)  [1/1] 0.00ns  loc: mat_mul/mat_mul.c:30
 :6  %matA_local = alloca [10000 x float], align 4
 
-ST_1: StgValue_6 (11)  [2/2] 1.77ns  loc: mat_mul/mat_mul.c:32
+ST_1: StgValue_10 (11)  [2/2] 1.77ns  loc: mat_mul/mat_mul.c:33
 :7  call fastcc void @copy_mat([10000 x float]* %matA, [10000 x float]* %matA_local) nounwind
 
-ST_1: StgValue_7 (12)  [2/2] 1.77ns  loc: mat_mul/mat_mul.c:33
+ST_1: StgValue_11 (12)  [2/2] 1.77ns  loc: mat_mul/mat_mul.c:34
 :8  call fastcc void @copy_mat([10000 x float]* %matB, [10000 x float]* %matB_local) nounwind
-
-ST_1: StgValue_8 (13)  [2/2] 1.77ns  loc: mat_mul/mat_mul.c:38
-:9  call fastcc void @copy_mat([10000 x float]* %matC_local, [10000 x float]* %matC) nounwind
 
 
  <State 2>: 0.00ns
-ST_2: StgValue_9 (4)  [1/1] 0.00ns
-:0  call void (...)* @_ssdm_op_SpecBitsMap([10000 x float]* %matA) nounwind, !map !13
-
-ST_2: StgValue_10 (5)  [1/1] 0.00ns
-:1  call void (...)* @_ssdm_op_SpecBitsMap([10000 x float]* %matB) nounwind, !map !19
-
-ST_2: StgValue_11 (6)  [1/1] 0.00ns
-:2  call void (...)* @_ssdm_op_SpecBitsMap([10000 x float]* %matC) nounwind, !map !23
-
-ST_2: StgValue_12 (7)  [1/1] 0.00ns
-:3  call void (...)* @_ssdm_op_SpecTopModule([13 x i8]* @mat_mul_wrap_str) nounwind
-
-ST_2: StgValue_13 (11)  [1/2] 0.00ns  loc: mat_mul/mat_mul.c:32
+ST_2: StgValue_12 (11)  [1/2] 0.00ns  loc: mat_mul/mat_mul.c:33
 :7  call fastcc void @copy_mat([10000 x float]* %matA, [10000 x float]* %matA_local) nounwind
 
-ST_2: StgValue_14 (12)  [1/2] 0.00ns  loc: mat_mul/mat_mul.c:33
+ST_2: StgValue_13 (12)  [1/2] 0.00ns  loc: mat_mul/mat_mul.c:34
 :8  call fastcc void @copy_mat([10000 x float]* %matB, [10000 x float]* %matB_local) nounwind
 
-ST_2: StgValue_15 (13)  [1/2] 0.00ns  loc: mat_mul/mat_mul.c:38
-:9  call fastcc void @copy_mat([10000 x float]* %matC_local, [10000 x float]* %matC) nounwind
 
-ST_2: StgValue_16 (14)  [1/1] 0.00ns  loc: mat_mul/mat_mul.c:39
-:10  ret void
+ <State 3>: 0.00ns
+ST_3: StgValue_14 (13)  [2/2] 0.00ns  loc: mat_mul/mat_mul.c:37
+:9  call fastcc void @mat_mul([10000 x float]* %matA_local, [10000 x float]* %matB_local, [10000 x float]* %matC_local) nounwind
+
+
+ <State 4>: 0.00ns
+ST_4: StgValue_15 (13)  [1/2] 0.00ns  loc: mat_mul/mat_mul.c:37
+:9  call fastcc void @mat_mul([10000 x float]* %matA_local, [10000 x float]* %matB_local, [10000 x float]* %matC_local) nounwind
+
+
+ <State 5>: 1.77ns
+ST_5: StgValue_16 (14)  [2/2] 1.77ns  loc: mat_mul/mat_mul.c:40
+:10  call fastcc void @copy_mat([10000 x float]* %matC_local, [10000 x float]* %matC) nounwind
+
+
+ <State 6>: 0.00ns
+ST_6: StgValue_17 (4)  [1/1] 0.00ns
+:0  call void (...)* @_ssdm_op_SpecBitsMap([10000 x float]* %matA) nounwind, !map !13
+
+ST_6: StgValue_18 (5)  [1/1] 0.00ns
+:1  call void (...)* @_ssdm_op_SpecBitsMap([10000 x float]* %matB) nounwind, !map !19
+
+ST_6: StgValue_19 (6)  [1/1] 0.00ns
+:2  call void (...)* @_ssdm_op_SpecBitsMap([10000 x float]* %matC) nounwind, !map !23
+
+ST_6: StgValue_20 (7)  [1/1] 0.00ns
+:3  call void (...)* @_ssdm_op_SpecTopModule([13 x i8]* @mat_mul_wrap_str) nounwind
+
+ST_6: StgValue_21 (14)  [1/2] 0.00ns  loc: mat_mul/mat_mul.c:40
+:10  call fastcc void @copy_mat([10000 x float]* %matC_local, [10000 x float]* %matC) nounwind
+
+ST_6: StgValue_22 (15)  [1/1] 0.00ns  loc: mat_mul/mat_mul.c:41
+:11  ret void
 
 
 
@@ -129,10 +151,23 @@ Target clock period: 10ns, clock uncertainty: 1.25ns.
 
  <State 1>: 1.77ns
 The critical path consists of the following:
-	'alloca' operation ('matC_local', mat_mul/mat_mul.c:27) [8]  (0 ns)
-	'call' operation (mat_mul/mat_mul.c:38) to 'copy_mat' [13]  (1.77 ns)
+	'alloca' operation ('matB_local', mat_mul/mat_mul.c:29) [9]  (0 ns)
+	'call' operation (mat_mul/mat_mul.c:34) to 'copy_mat' [12]  (1.77 ns)
 
  <State 2>: 0ns
+The critical path consists of the following:
+
+ <State 3>: 0ns
+The critical path consists of the following:
+
+ <State 4>: 0ns
+The critical path consists of the following:
+
+ <State 5>: 1.77ns
+The critical path consists of the following:
+	'call' operation (mat_mul/mat_mul.c:40) to 'copy_mat' [14]  (1.77 ns)
+
+ <State 6>: 0ns
 The critical path consists of the following:
 
 
@@ -146,6 +181,10 @@ N/A
   - Chain level:
 	State 1
 	State 2
+	State 3
+	State 4
+	State 5
+	State 6
 
 
 ============================================================

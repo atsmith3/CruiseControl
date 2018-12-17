@@ -3,7 +3,7 @@
 ================================================================
 == Vivado HLS Report for 'copy_mat'
 ================================================================
-* Date:           Thu Dec 13 22:27:52 2018
+* Date:           Sun Dec 16 18:08:39 2018
 
 * Version:        2017.2 (Build 1909853 on Thu Jun 15 18:55:24 MDT 2017)
 * Project:        mat_mul
@@ -86,10 +86,10 @@
     +--------------------+----------+-------+----+----+------------+------------+
     |    Variable Name   | Operation| DSP48E| FF | LUT| Bitwidth P0| Bitwidth P1|
     +--------------------+----------+-------+----+----+------------+------------+
-    |i_1_fu_90_p2        |     +    |      0|  26|  12|           7|           1|
-    |j_1_fu_118_p2       |     +    |      0|  26|  12|           7|           1|
+    |i_2_fu_90_p2        |     +    |      0|  26|  12|           7|           1|
+    |j_2_fu_118_p2       |     +    |      0|  26|  12|           7|           1|
     |next_mul_fu_78_p2   |     +    |      0|  47|  19|          14|           7|
-    |tmp_1_fu_100_p2     |     +    |      0|  47|  19|          14|          14|
+    |tmp_5_fu_100_p2     |     +    |      0|  47|  19|          14|          14|
     |exitcond1_fu_84_p2  |   icmp   |      0|   0|   4|           7|           6|
     |exitcond_fu_112_p2  |   icmp   |      0|   0|   4|           7|           6|
     +--------------------+----------+-------+----+----+------------+------------+
@@ -114,9 +114,9 @@
     +-------------------+----+----+-----+-----------+
     |ap_CS_fsm          |   4|   0|    4|          0|
     |dest_addr_reg_142  |  14|   0|   14|          0|
-    |i_1_reg_132        |   7|   0|    7|          0|
+    |i_2_reg_132        |   7|   0|    7|          0|
     |i_reg_44           |   7|   0|    7|          0|
-    |j_1_reg_150        |   7|   0|    7|          0|
+    |j_2_reg_150        |   7|   0|    7|          0|
     |j_reg_67           |   7|   0|    7|          0|
     |next_mul_reg_124   |  14|   0|   14|          0|
     |phi_mul_reg_55     |  14|   0|   14|          0|
@@ -197,7 +197,7 @@ ST_1: StgValue_5 (3)  [1/1] 1.59ns  loc: mat_mul/mat_mul.c:5
 
  <State 2>: 2.91ns
 ST_2: i (5)  [1/1] 0.00ns
-.loopexit:0  %i = phi i7 [ 0, %0 ], [ %i_1, %.loopexit.loopexit ]
+.loopexit:0  %i = phi i7 [ 0, %0 ], [ %i_2, %.loopexit.loopexit ]
 
 ST_2: phi_mul (6)  [1/1] 0.00ns
 .loopexit:1  %phi_mul = phi i14 [ 0, %0 ], [ %next_mul, %.loopexit.loopexit ]
@@ -211,8 +211,8 @@ ST_2: exitcond1 (8)  [1/1] 2.91ns  loc: mat_mul/mat_mul.c:5
 ST_2: empty (9)  [1/1] 0.00ns
 .loopexit:4  %empty = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 100, i64 100, i64 100)
 
-ST_2: i_1 (10)  [1/1] 2.32ns  loc: mat_mul/mat_mul.c:5
-.loopexit:5  %i_1 = add i7 %i, 1
+ST_2: i_2 (10)  [1/1] 2.32ns  loc: mat_mul/mat_mul.c:5
+.loopexit:5  %i_2 = add i7 %i, 1
 
 ST_2: StgValue_12 (11)  [1/1] 0.00ns  loc: mat_mul/mat_mul.c:5
 .loopexit:6  br i1 %exitcond1, label %2, label %.preheader.preheader
@@ -226,31 +226,31 @@ ST_2: StgValue_14 (32)  [1/1] 0.00ns  loc: mat_mul/mat_mul.c:10
 
  <State 3>: 5.60ns
 ST_3: j (15)  [1/1] 0.00ns
-.preheader:0  %j = phi i7 [ %j_1, %1 ], [ 0, %.preheader.preheader ]
+.preheader:0  %j = phi i7 [ %j_2, %1 ], [ 0, %.preheader.preheader ]
 
 ST_3: j_cast1_cast (16)  [1/1] 0.00ns  loc: mat_mul/mat_mul.c:7
 .preheader:1  %j_cast1_cast = zext i7 %j to i14
 
-ST_3: tmp_1 (17)  [1/1] 2.34ns  loc: mat_mul/mat_mul.c:7
-.preheader:2  %tmp_1 = add i14 %phi_mul, %j_cast1_cast
+ST_3: tmp_5 (17)  [1/1] 2.34ns  loc: mat_mul/mat_mul.c:7
+.preheader:2  %tmp_5 = add i14 %phi_mul, %j_cast1_cast
 
-ST_3: tmp_1_cast (18)  [1/1] 0.00ns  loc: mat_mul/mat_mul.c:7
-.preheader:3  %tmp_1_cast = zext i14 %tmp_1 to i32
+ST_3: tmp_5_cast (18)  [1/1] 0.00ns  loc: mat_mul/mat_mul.c:7
+.preheader:3  %tmp_5_cast = zext i14 %tmp_5 to i32
 
 ST_3: src_addr (19)  [1/1] 0.00ns  loc: mat_mul/mat_mul.c:7
-.preheader:4  %src_addr = getelementptr [10000 x float]* %src, i32 0, i32 %tmp_1_cast
+.preheader:4  %src_addr = getelementptr [10000 x float]* %src, i32 0, i32 %tmp_5_cast
 
 ST_3: dest_addr (20)  [1/1] 0.00ns  loc: mat_mul/mat_mul.c:7
-.preheader:5  %dest_addr = getelementptr [10000 x float]* %dest, i32 0, i32 %tmp_1_cast
+.preheader:5  %dest_addr = getelementptr [10000 x float]* %dest, i32 0, i32 %tmp_5_cast
 
 ST_3: exitcond (21)  [1/1] 2.91ns  loc: mat_mul/mat_mul.c:6
 .preheader:6  %exitcond = icmp eq i7 %j, -28
 
-ST_3: empty_3 (22)  [1/1] 0.00ns
-.preheader:7  %empty_3 = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 100, i64 100, i64 100)
+ST_3: empty_5 (22)  [1/1] 0.00ns
+.preheader:7  %empty_5 = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 100, i64 100, i64 100)
 
-ST_3: j_1 (23)  [1/1] 2.32ns  loc: mat_mul/mat_mul.c:6
-.preheader:8  %j_1 = add i7 %j, 1
+ST_3: j_2 (23)  [1/1] 2.32ns  loc: mat_mul/mat_mul.c:6
+.preheader:8  %j_2 = add i7 %j, 1
 
 ST_3: StgValue_24 (24)  [1/1] 0.00ns  loc: mat_mul/mat_mul.c:6
 .preheader:9  br i1 %exitcond, label %.loopexit.loopexit, label %1
@@ -299,19 +299,19 @@ phi_mul      (phi              ) [ 00111]
 next_mul     (add              ) [ 01111]
 exitcond1    (icmp             ) [ 00111]
 empty        (speclooptripcount) [ 00000]
-i_1          (add              ) [ 01111]
+i_2          (add              ) [ 01111]
 StgValue_12  (br               ) [ 00000]
 StgValue_13  (br               ) [ 00111]
 StgValue_14  (ret              ) [ 00000]
 j            (phi              ) [ 00010]
 j_cast1_cast (zext             ) [ 00000]
-tmp_1        (add              ) [ 00000]
-tmp_1_cast   (zext             ) [ 00000]
+tmp_5        (add              ) [ 00000]
+tmp_5_cast   (zext             ) [ 00000]
 src_addr     (getelementptr    ) [ 00001]
 dest_addr    (getelementptr    ) [ 00001]
 exitcond     (icmp             ) [ 00111]
-empty_3      (speclooptripcount) [ 00000]
-j_1          (add              ) [ 00111]
+empty_5      (speclooptripcount) [ 00000]
+j_2          (add              ) [ 00111]
 StgValue_24  (br               ) [ 00000]
 StgValue_26  (br               ) [ 01111]
 src_load     (load             ) [ 00000]
@@ -560,7 +560,7 @@ StgValue_29  (br               ) [ 00111]
 </bind>
 </comp>
 
-<comp id="90" class="1004" name="i_1_fu_90">
+<comp id="90" class="1004" name="i_2_fu_90">
 <pin_list>
 <pin id="91" dir="0" index="0" bw="7" slack="0"/>
 <pin id="92" dir="0" index="1" bw="1" slack="0"/>
@@ -568,7 +568,7 @@ StgValue_29  (br               ) [ 00111]
 </pin_list>
 <bind>
 <opcode="add(8) " fcode="add"/>
-<opset="i_1/2 "/>
+<opset="i_2/2 "/>
 </bind>
 </comp>
 
@@ -583,7 +583,7 @@ StgValue_29  (br               ) [ 00111]
 </bind>
 </comp>
 
-<comp id="100" class="1004" name="tmp_1_fu_100">
+<comp id="100" class="1004" name="tmp_5_fu_100">
 <pin_list>
 <pin id="101" dir="0" index="0" bw="14" slack="1"/>
 <pin id="102" dir="0" index="1" bw="7" slack="0"/>
@@ -591,18 +591,18 @@ StgValue_29  (br               ) [ 00111]
 </pin_list>
 <bind>
 <opcode="add(8) " fcode="add"/>
-<opset="tmp_1/3 "/>
+<opset="tmp_5/3 "/>
 </bind>
 </comp>
 
-<comp id="106" class="1004" name="tmp_1_cast_fu_106">
+<comp id="106" class="1004" name="tmp_5_cast_fu_106">
 <pin_list>
 <pin id="107" dir="0" index="0" bw="14" slack="0"/>
 <pin id="108" dir="1" index="1" bw="32" slack="0"/>
 </pin_list>
 <bind>
 <opcode="zext(34) " fcode="zext"/>
-<opset="tmp_1_cast/3 "/>
+<opset="tmp_5_cast/3 "/>
 </bind>
 </comp>
 
@@ -618,7 +618,7 @@ StgValue_29  (br               ) [ 00111]
 </bind>
 </comp>
 
-<comp id="118" class="1004" name="j_1_fu_118">
+<comp id="118" class="1004" name="j_2_fu_118">
 <pin_list>
 <pin id="119" dir="0" index="0" bw="7" slack="0"/>
 <pin id="120" dir="0" index="1" bw="1" slack="0"/>
@@ -626,7 +626,7 @@ StgValue_29  (br               ) [ 00111]
 </pin_list>
 <bind>
 <opcode="add(8) " fcode="add"/>
-<opset="j_1/3 "/>
+<opset="j_2/3 "/>
 </bind>
 </comp>
 
@@ -640,13 +640,13 @@ StgValue_29  (br               ) [ 00111]
 </bind>
 </comp>
 
-<comp id="132" class="1005" name="i_1_reg_132">
+<comp id="132" class="1005" name="i_2_reg_132">
 <pin_list>
 <pin id="133" dir="0" index="0" bw="7" slack="0"/>
 <pin id="134" dir="1" index="1" bw="7" slack="0"/>
 </pin_list>
 <bind>
-<opset="i_1 "/>
+<opset="i_2 "/>
 </bind>
 </comp>
 
@@ -670,13 +670,13 @@ StgValue_29  (br               ) [ 00111]
 </bind>
 </comp>
 
-<comp id="150" class="1005" name="j_1_reg_150">
+<comp id="150" class="1005" name="j_2_reg_150">
 <pin_list>
 <pin id="151" dir="0" index="0" bw="7" slack="0"/>
 <pin id="152" dir="1" index="1" bw="7" slack="0"/>
 </pin_list>
 <bind>
-<opset="j_1 "/>
+<opset="j_2 "/>
 </bind>
 </comp>
 
@@ -778,16 +778,16 @@ StgValue_29  (br               ) [ 00111]
 	State 2
 		next_mul : 1
 		exitcond1 : 1
-		i_1 : 1
+		i_2 : 1
 		StgValue_12 : 2
 	State 3
 		j_cast1_cast : 1
-		tmp_1 : 2
-		tmp_1_cast : 3
+		tmp_5 : 2
+		tmp_5_cast : 3
 		src_addr : 4
 		dest_addr : 4
 		exitcond : 1
-		j_1 : 1
+		j_2 : 1
 		StgValue_24 : 2
 		src_load : 5
 	State 4
@@ -803,15 +803,15 @@ StgValue_29  (br               ) [ 00111]
 | Operation|   Functional Unit  |    FF   |   LUT   |
 |----------|--------------------|---------|---------|
 |          |   next_mul_fu_78   |    47   |    19   |
-|    add   |      i_1_fu_90     |    26   |    12   |
-|          |    tmp_1_fu_100    |    47   |    19   |
-|          |     j_1_fu_118     |    26   |    12   |
+|    add   |      i_2_fu_90     |    26   |    12   |
+|          |    tmp_5_fu_100    |    47   |    19   |
+|          |     j_2_fu_118     |    26   |    12   |
 |----------|--------------------|---------|---------|
 |   icmp   |   exitcond1_fu_84  |    0    |    4    |
 |          |   exitcond_fu_112  |    0    |    4    |
 |----------|--------------------|---------|---------|
 |   zext   | j_cast1_cast_fu_96 |    0    |    0    |
-|          |  tmp_1_cast_fu_106 |    0    |    0    |
+|          |  tmp_5_cast_fu_106 |    0    |    0    |
 |----------|--------------------|---------|---------|
 |   Total  |                    |   146   |    70   |
 |----------|--------------------|---------|---------|
@@ -824,9 +824,9 @@ N/A
 |                 |   FF   |
 +-----------------+--------+
 |dest_addr_reg_142|   14   |
-|   i_1_reg_132   |    7   |
+|   i_2_reg_132   |    7   |
 |     i_reg_44    |    7   |
-|   j_1_reg_150   |    7   |
+|   j_2_reg_150   |    7   |
 |     j_reg_67    |    7   |
 | next_mul_reg_124|   14   |
 |  phi_mul_reg_55 |   14   |

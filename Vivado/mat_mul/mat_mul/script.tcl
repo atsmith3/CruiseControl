@@ -5,8 +5,8 @@
 ############################################################
 open_project mat_mul
 set_top mat_mul_wrap
-add_files mat_mul/mat_mul.c
 add_files mat_mul/mat_mul.h
+add_files mat_mul/mat_mul.c
 add_files -tb mat_mul/test_bench.c
 open_solution "mat_mul"
 set_part {xc7z020clg484-1} -tool vivado

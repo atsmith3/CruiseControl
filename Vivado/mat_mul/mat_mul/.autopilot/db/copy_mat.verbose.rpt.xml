@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vivado HLS Report for 'copy_mat'" level="0">
-<item name = "Date">Thu Dec 13 22:27:52 2018
+<item name = "Date">Sun Dec 16 18:08:39 2018
 </item>
 <item name = "Version">2017.2 (Build 1909853 on Thu Jun 15 18:55:24 MDT 2017)</item>
 <item name = "Project">mat_mul</item>
@@ -79,10 +79,10 @@
 </item>
 <item name = "Expression"><table name="" hasTotal="1">
 <keys size="7">Variable Name, Operation, DSP48E, FF, LUT, Bitwidth P0, Bitwidth P1</keys>
-<column name="i_1_fu_90_p2">+, 0, 26, 12, 7, 1</column>
-<column name="j_1_fu_118_p2">+, 0, 26, 12, 7, 1</column>
+<column name="i_2_fu_90_p2">+, 0, 26, 12, 7, 1</column>
+<column name="j_2_fu_118_p2">+, 0, 26, 12, 7, 1</column>
 <column name="next_mul_fu_78_p2">+, 0, 47, 19, 14, 7</column>
-<column name="tmp_1_fu_100_p2">+, 0, 47, 19, 14, 14</column>
+<column name="tmp_5_fu_100_p2">+, 0, 47, 19, 14, 14</column>
 <column name="exitcond1_fu_84_p2">icmp, 0, 0, 4, 7, 6</column>
 <column name="exitcond_fu_112_p2">icmp, 0, 0, 4, 7, 6</column>
 </table>
@@ -99,9 +99,9 @@
 <keys size="5">Name, FF, LUT, Bits, Const Bits</keys>
 <column name="ap_CS_fsm">4, 0, 4, 0</column>
 <column name="dest_addr_reg_142">14, 0, 14, 0</column>
-<column name="i_1_reg_132">7, 0, 7, 0</column>
+<column name="i_2_reg_132">7, 0, 7, 0</column>
 <column name="i_reg_44">7, 0, 7, 0</column>
-<column name="j_1_reg_150">7, 0, 7, 0</column>
+<column name="j_2_reg_150">7, 0, 7, 0</column>
 <column name="j_reg_67">7, 0, 7, 0</column>
 <column name="next_mul_reg_124">14, 0, 14, 0</column>
 <column name="phi_mul_reg_55">14, 0, 14, 0</column>
