@@ -75,11 +75,9 @@ int main(int argc, char** argv) {
     getline(fin, line);
     line_count++;
     if(regex_match(line, begin_region)) {
-      std::cout << "Entering ROI" << '\n';
       roi = true;
     }
     if(regex_match(line, end_region)) {
-      std::cout << "Leaving ROI" << '\n';
       roi = false;
     }
 
@@ -89,7 +87,7 @@ int main(int argc, char** argv) {
       new_loop.upper_bound = get_upper_bound(line);
       new_loop.index = get_indexer(line);
       loops.push_back(new_loop);
-      std::cout << line << '\n';
+      //std::cout << line << '\n';
     }
   }
 
@@ -117,11 +115,9 @@ int main(int argc, char** argv) {
       getline(fin, line);
       fout << line << '\n';
       if(regex_match(line, begin_region)) {
-        std::cout << "Entering ROI" << '\n';
         roi = true;
       }
       if(regex_match(line, end_region)) {
-        std::cout << "Leaving ROI" << '\n';
         roi = false;
       }
 
@@ -140,13 +136,13 @@ int main(int argc, char** argv) {
     output_file_names.push_back(std::string(output_file_name));
   }
 
-  for(auto i : loops) {
-    print_loop_info(i);
-  }
-
+  std::fstream text;
+  text.open(file_name_text, std::fstream::out);
+  text << output_file_names.size() << '\n';
   for(auto i : output_file_names){
-    std::cout << i << '\n';
+    text << i << '\n';
   }
+  text.close();
 
   return 0;
 }
