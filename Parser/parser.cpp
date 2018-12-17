@@ -8,10 +8,16 @@
 #include <fstream>
 #include <algorithm>
 #include <unistd.h>
+#include <math.h>
 
 bool is_space(char i) {return i == ' ' || i == '\t';}
 
-char* output_file_format = "%s_%u.c";
+#define FORMAT_STR "%s_%s.c"
+#define LOOPUNROLL "#pragma HLS UNROLL factor=8"
+char* file_name_text = "files.txt";
+char output_file_name[256] = {0};
+
+int permutations = 0;
 
 typedef struct loop_info_t{
   int line_num;
@@ -32,6 +38,7 @@ char get_indexer(std::string line);
 int get_upper_bound(std::string line);
 int get_lower_bound(std::string line);
 void print_loop_info(loop_info l);
+std::string make_identifier(int id, int nl);
 
 int main(int argc, char** argv) {
   int c = 0;
@@ -58,8 +65,6 @@ int main(int argc, char** argv) {
     }
   }
 
-  std::fstream fout;
-  fout.open(fo, std::fstream::out);
   std::fstream fin;
   fin.open(fi, std::fstream::in);
 
@@ -88,12 +93,60 @@ int main(int argc, char** argv) {
     }
   }
 
+  fin.close();
+
+  permutations = std::pow(2, (int)loops.size());
+  std::string identifier;
+  int loop_count = 0;
+  std::vector<std::string> output_file_names;
+
+  for(int i = 0; i < permutations; i++) {
+    /* Create format string */
+    identifier = make_identifier(i, (int)loops.size()); 
+
+    /* Open Output File and Input File */
+    sprintf(output_file_name, FORMAT_STR, fo, identifier.c_str()); 
+    std::fstream fout;
+    fout.open(output_file_name, std::fstream::out);
+    std::fstream fin;
+    fin.open(fi, std::fstream::in);
+    loop_count = 0;
+
+    /* Copy Contents and Print pragmas */
+    while(!fin.eof()) {
+      getline(fin, line);
+      fout << line << '\n';
+      if(regex_match(line, begin_region)) {
+        std::cout << "Entering ROI" << '\n';
+        roi = true;
+      }
+      if(regex_match(line, end_region)) {
+        std::cout << "Leaving ROI" << '\n';
+        roi = false;
+      }
+
+      if(regex_match(line, loop) && roi) {
+        if((i & (1<<loop_count)) != 0) {
+          fout << LOOPUNROLL << '\n';
+        }
+        loop_count++;
+      }
+    }
+
+    fout.close();
+    fin.close();
+
+    /* Add file to filename vector */
+    output_file_names.push_back(std::string(output_file_name));
+  }
+
   for(auto i : loops) {
     print_loop_info(i);
   }
-  
-  fin.close();
-  fout.close();
+
+  for(auto i : output_file_names){
+    std::cout << i << '\n';
+  }
 
   return 0;
 }
@@ -154,4 +207,13 @@ int get_lower_bound(std::string line) {
 
 void print_loop_info(loop_info l) {
   std::cout << l.line_num << " " << l.lower_bound << " " << l.upper_bound << " " << l.index << '\n';
+}
+
+std::string make_identifier(int id, int nl) {
+  std::string ret;
+  for(int i = 0; i < nl; i++) {
+    if((id & (1 << i)) == 0) ret = ret + "0";
+    else ret = ret + "1";
+  }
+  return ret;
 }
