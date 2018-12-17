@@ -23,7 +23,7 @@ typedef struct loop_info_t{
 std::vector<loop_info_t> loops;
 unsigned int identifier;
 
-std::regex data(".*|.*|.*|.*");
+std::regex data(".*none.*");
 
 std::string convert_csv(std::string line);
 

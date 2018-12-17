@@ -1,3 +1,3 @@
 #!/bin/bash
 rm ./files.txt
-rm ./mat_mul_*
+rm ./lenet_hls_c5_*
