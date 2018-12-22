@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  19 DEC 2018 17:06
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  21 DEC 2018 18:23
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -451,148 +451,113 @@ Underfull \hbox (badness 1354) in paragraph at lines 45--46
 []\OT1/ptm/m/n/10 Vivado High Level Syn-the-sis (HLS) has been
  []
 
-
-Underfull \hbox (badness 2065) in paragraph at lines 49--50
-\OT1/ptm/m/n/10 pro-duces can of-ten com-pete with man-ual de-signs
- []
-
-
-Underfull \hbox (badness 1127) in paragraph at lines 49--50
-\OT1/ptm/m/n/10 con-straints is a man-ual pro-cess of try-ing dif-fer-ent
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 49--50
-
- []
-
 <Picture1.png, id=1, 505.4082pt x 314.6154pt>
 File: Picture1.png Graphic file (type png)
  <use Picture1.png>
-Package pdftex.def Info: Picture1.png used on input line 55.
+Package pdftex.def Info: Picture1.png used on input line 54.
 (pdftex.def)             Requested size: 202.15968pt x 125.84392pt.
-LaTeX Font Info:    Try loading font information for OT1+phv on input line 56.
+LaTeX Font Info:    Try loading font information for OT1+phv on input line 55.
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/psnfss/ot1phv.fd
 File: ot1phv.fd 2001/06/04 scalable font definitions for OT1/phv.
 )
 LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <10> not available
-(Font)              Font shape `OT1/phv/b/n' tried instead on input line 56.
+(Font)              Font shape `OT1/phv/b/n' tried instead on input line 55.
  [1{/usr/local/texlive/2017/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
 
  <./Picture1.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 64--65
+Underfull \hbox (badness 10000) in paragraph at lines 63--64
 
  []
 
 <CC_flow.png, id=12, 145.9854pt x 479.391pt>
 File: CC_flow.png Graphic file (type png)
  <use CC_flow.png>
-Package pdftex.def Info: CC_flow.png used on input line 68.
+Package pdftex.def Info: CC_flow.png used on input line 67.
 (pdftex.def)             Requested size: 87.5919pt x 287.63681pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 72--73
+Underfull \hbox (badness 10000) in paragraph at lines 71--72
 
  []
 
 <for_loops.png, id=13, 727.0362pt x 432.6564pt>
 File: for_loops.png Graphic file (type png)
  <use for_loops.png>
-Package pdftex.def Info: for_loops.png used on input line 76.
+Package pdftex.def Info: for_loops.png used on input line 75.
 (pdftex.def)             Requested size: 254.46648pt x 151.432pt.
 
-Overfull \hbox (33.1396pt too wide) in paragraph at lines 76--77
+Overfull \hbox (33.1396pt too wide) in paragraph at lines 75--76
  [][] 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 80--81
-
- []
-
-
-Underfull \hbox (badness 1178) in paragraph at lines 82--83
-\OT1/ptm/m/n/10 for each HLS project. This in-cludes nam-ing the
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 82--83
-
  []
 
 [2 <./CC_flow.png> <./for_loops.png>] <tcler.png, id=19, 208.78pt x 481.8pt>
 File: tcler.png Graphic file (type png)
 
 <use tcler.png>
-Package pdftex.def Info: tcler.png used on input line 89.
+Package pdftex.def Info: tcler.png used on input line 86.
 (pdftex.def)             Requested size: 104.38972pt x 240.8994pt.
  <outputparser.png, id=20, 155.1396pt x 482.7636pt>
 File: outputparser.png Graphic file (type png)
 
 <use outputparser.png>
-Package pdftex.def Info: outputparser.png used on input line 98.
+Package pdftex.def Info: outputparser.png used on input line 95.
 (pdftex.def)             Requested size: 77.5696pt x 241.3812pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 103--104
+Underfull \vbox (badness 4048) has occurred while \output is active []
 
- []
 
-[3 <./tcler.png> <./outputparser.png>]
-<result0.png, id=26, 607.068pt x 434.5836pt>
+<result0.png, id=21, 607.068pt x 434.5836pt>
 File: result0.png Graphic file (type png)
  <use result0.png>
-Package pdftex.def Info: result0.png used on input line 113.
+Package pdftex.def Info: result0.png used on input line 109.
 (pdftex.def)             Requested size: 242.82289pt x 173.83035pt.
 
-Overfull \hbox (21.49602pt too wide) in paragraph at lines 113--114
+Overfull \hbox (21.49602pt too wide) in paragraph at lines 109--110
  [][] 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 117--118
+[3 <./tcler.png> <./outputparser.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 113--114
 
  []
 
 <result1.png, id=27, 566.115pt x 367.6134pt>
 File: result1.png Graphic file (type png)
  <use result1.png>
-Package pdftex.def Info: result1.png used on input line 121.
-(pdftex.def)             Requested size: 254.74939pt x 165.42448pt.
+Package pdftex.def Info: result1.png used on input line 117.
+(pdftex.def)             Requested size: 243.4247pt x 158.07066pt.
 
-Overfull \hbox (33.42252pt too wide) in paragraph at lines 121--122
+Overfull \hbox (22.09782pt too wide) in paragraph at lines 117--118
  [][] 
  []
 
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-Underfull \hbox (badness 1112) in paragraph at lines 125--126
+Underfull \hbox (badness 1112) in paragraph at lines 121--122
 \OT1/ptm/m/n/10 for the larger tests of Cruise Con-trol on the fifth
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 125--126
+Underfull \hbox (badness 10000) in paragraph at lines 121--122
 
  []
 
 <result2.png, id=28, 489.5088pt x 367.6134pt>
 File: result2.png Graphic file (type png)
  <use result2.png>
-Package pdftex.def Info: result2.png used on input line 129.
+Package pdftex.def Info: result2.png used on input line 125.
 (pdftex.def)             Requested size: 220.27692pt x 165.42448pt.
  [4 <./result0.png> <./result1.png> <./result2.png>]
 Missing character: There is no â in font ptmr7t!
 Missing character: There is no € in font ptmr7t!
 Missing character: There is no “ in font ptmr7t!
 
-Underfull \hbox (badness 6876) in paragraph at lines 149--156
+Underfull \hbox (badness 6876) in paragraph at lines 145--152
 \OT1/ptm/m/n/10 LP-HLS: Au-to-matic Power-Intent Gen-er-a-tion for
  []
 
 
-Overfull \hbox (3.15997pt too wide) in paragraph at lines 149--156
+Overfull \hbox (3.15997pt too wide) in paragraph at lines 145--152
 \OT1/ptm/m/n/10 [4] at-smith3 - https://github.com/atsmith3/CruiseControl 
  []
 
@@ -609,7 +574,7 @@ Here is how much of TeX's memory you used:
 ase/8r.enc}</usr/local/texlive/2017/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.
 pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/
 local/texlive/2017/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>
-Output written on Final_Report.pdf (5 pages, 1120574 bytes).
+Output written on Final_Report.pdf (5 pages, 1120603 bytes).
 PDF statistics:
  50 PDF objects out of 1000 (max. 8388607)
  23 compressed objects within 1 object stream
