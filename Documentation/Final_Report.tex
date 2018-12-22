@@ -56,11 +56,11 @@ Vivado HLS and other similar tools can accept C and C++ programs as inputs and p
 \end{figure}
 
 \section{Contributions}
-Our contribution is to automate the design space exploration of HLS projects. We have developed and efficient method that allows Cruise Control to produce a valid solution. To reach this goal, our input parser is developed from scratch. The syntax that it will be looking for is native to HLS applications and can be accomplished  with regular expression processing. We will also have to define and model our own search algorithm for the state space which is something that is also unique. Our approach uses breadth first search (BFS) on our design space to reach a solution.  Finally, we will have to write our own tool command line (TCL) scripts to automate the process and handle the integration with Vivado HLS. This script is also developed from scratch and is used to make Cruise Control as simple as possible for designers. We believe that these contributions are unique and can make an impact on the HLS community. All of the code is open source and can be found on the Cruise Control Git Hub [4]. 
+Our contribution is to automate the design space exploration of HLS projects. We have developed and efficient method that allows Cruise Control to produce a valid solution. To reach this goal, our input parser is developed from scratch. The syntax that it will be looking for is native to HLS applications and can be accomplished  with regular expression processing. We will also have to define and model our own search algorithm for the state space which is something that is also unique. Our approach uses an exaustive search strategy on our design space to find an optimal solution.  Finally, we will have to write our own tool command line (TCL) scripts to automate the process and handle the integration with Vivado HLS. This script is also developed from scratch and is used to make Cruise Control as simple as possible for designers. We believe that these contributions are unique and can make an impact on the HLS community. All of the code is open source and can be found on the Cruise Control Git Hub [4]. 
 
 
 \section{Approach}
-Our approach to create Cruise Control can be broken up into a few steps outlined in Figure 2. The first step in the control flow is to preform pre-processing on the input C or C++ file.  The pre-processing includes scanning the input file for for loops. The pre-processor then enters two lines after each instance of a for loop. This is done because the second part of the input parser needs to have these spaces to input the pragmas automatically. The pre-processor outputs a template file with the added spaces for the second part of the input parser to use. The parser was aided by the regex library and run on a Linux machine.  \newline
+Our approach to create Cruise Control can be broken up into a few steps outlined in Figure 2. The first step in the control flow is to preform pre-processing on the input C or C++ file.  The pre-processing includes scanning the input file for for loops and extracting the hierarchy, upper and lower bounds, and the indexing variable from the for loops. The next step for the input parser is to generate copies of the input file with every possible permutation of pragma placement. At this point the pragma placement is binary. Either a pragma is present or it is not. \newline
 
 \begin{figure}[H]
 \centering
@@ -68,7 +68,7 @@ Our approach to create Cruise Control can be broken up into a few steps outlined
 \caption{Cruise Control  flow}
 \end{figure}
 
-After the lines have been added to the input file, the second step of the input parser begins. This portion of the input parser finds the for loops once again and automatically inserts the pragmas. The choice to include the pragma is seen as a binary decision in Cruise Control. The pragma is either placed or is not placed. With this in mind, the state space of Cruise Control can be defined by a set of binary numbers. Each for loop in the source code is given an index into the binary number and each index has a value corresponding to if the pragma is placed or not placed. This allows Cruise Control to have a finite set of states to explore. Figure 3 shows an example of what a nested for loop structure will become after the input parser processes it. \newline
+With this in mind, the state space of Cruise Control can be defined by a set of binary numbers. Each for loop in the source code is given an index into the binary number and each index has a value corresponding to if the pragma is placed or not placed. This allows Cruise Control to have a finite set of states to explore. Figure 3 shows an example of what a nested for loop structure will become after the input parser processes it. This generates a search space of $2^{\#number\_for\_loops}$. \newline
 
 \begin{figure}[H]
 \centering
@@ -87,7 +87,7 @@ The input parser works by cycling through all possible design states and enterin
 \caption{TCLer control flow}
 \end{figure}
 
-The output of the TCLer is a report file that contains the latency numbers for each design iteration. An example of the output format is shown in Figure 5. The output parser accepts this report file as an input. With the report file, the output parser is able to isolate the exact cycle latency for each design. The latency count and iteration number are formatted and exported to a text file which allows the information to be easily copied into and Excel sheet. Within the Excel sheet, the user can find the design space state that fits their desired speed up.
+The output of the TCLer is a report file that contains the latency numbers for each design iteration. An example of the output format is shown in Figure 5. The output parser accepts this report file as an input. With the report file, the output parser is able to isolate the exact cycle latency for each design. The latency count and iteration number are formatted and exported to a text file which allows the information to be easily copied into and Excel sheet. Within the Excel sheet, the user can find the design space state that fits their desired speed up. Or the user can invoke an output parser to return the file that led to the optimal solution.
 
 
 \begin{figure}[H]
@@ -102,7 +102,7 @@ To gather data on Cruise Control's performance, different HLS projects were test
 
 
 \section{Results}
-With the output report files from Cruise Control, results of the performance were easy to obtain. Figure 6 shows the max speed up found by Cruise Control for both the large and small tests. 
+With the output report files from Cruise Control, results of the performance were easy to obtain. Figure 6 shows the normalized max speed up found by Cruise Control for both the large and small tests. These speed ups are relative to the unoptimized input HLS source code.
 
 \begin{figure}[H]
 \centering
@@ -118,7 +118,7 @@ The itemized list of run iteration and cycle count could be easily graphed. The 
 \caption{Matrix multiplication results}
 \end{figure}
 
-When looking at larger designs, more conclusions can be reached. Figure 8 outlines the results found for the larger tests of Cruise Control on the fifth convolution layer and fully connected layers for LeNet. As these results show, there are a few design states that have significant negative impacts on the performance. This is because of the loop unroll factor chosen for the parallel work did not always match the bounds of the for loops. This design choice produces more dense logic that becomes a bottle neck for the design as opposed to accelerating it. Significant performance increases were also discovered in the search by Cruise Control. States that resulted in a 1.8x speed up for both tests were found. The wave like data shown in the graph comes from the similarity in variations of the pragma placement. Often, the choice to include or exclude the pragmas in different locations can have similar impacts on performance. \newline
+When looking at larger designs, more conclusions can be reached. Figure 8 outlines the results found for the larger tests of Cruise Control on the fifth convolution layer and fully connected layers for LeNet. As these results show, there are a few design states that have significant negative impacts on the performance. This is because of the loop unroll factor chosen for the parallel work did not always match the bounds of the for loops. This design choice produces more dense logic that becomes a bottle neck for the design as opposed to accelerating it. Significant performance increases were also discovered in the search by Cruise Control. States that resulted in a 1.8x speed up for both tests were found. The wave like data shown in the graph comes from the similarity in variations of the pragma placement. Often, the choice to include or exclude the pragmas in different locations can have similar impacts on performance. We found that for these examples pragma placement in the inner loops lead to the accelerator better exploiting the algorithms parallelism while pragmas placed at the outer loop lead to often worse performance than the unoptimized source.\newline
 
 \begin{figure}[H]
 \centering
@@ -132,7 +132,7 @@ In addition to the performance speed up found by Cruise Control, the automation 
 
 
 \section{Conclusion}
-In this paper we present Cruise Control, an automatic tool to explore the design space for HLS projects. The control flow for the project is broken into an input parser to pre-process the input design, a TCL script to automate the design state exploration, and and output parser to format the results for easy examination. As seen from the results, Cruise Control is able to properly find a valid design state that optimizes the performance of a HLS design. From small to large projects, Cruise Control quickly moves through the search states to find a solution. In addition to the performance increases, Cruise Control is able to perform its job much more quickly than a human designer. This time saved can be of great use because now the designer can work on other material as Cruise Control runs knowing an optimal solution will be produced. The tool is also easy to integrate into any existing  HLS project. The tool is in early stages of the design process and can easily be capable of much more. 
+In this paper we present Cruise Control, an automatic tool to explore the design space for HLS projects. The control flow for the project is broken into an input parser to pre-process the input design, a TCL script to automate the design state exploration, and and output parser to format the results for easy examination. As seen from the results, Cruise Control is able to properly find a valid design state that optimizes the performance of a HLS design. From small to large projects, Cruise Control quickly moves through the search states to find a solution. In addition to the performance increases, Cruise Control is able to perform its job much more quickly than a human designer. This time saved can be of great use because now the designer can work on other material as Cruise Control runs knowing an optimal solution will be produced. The tool is also easy to integrate into any existing HLS project. The tool is in early stages of the development process and can easily be capable of much more. 
 
 
 \section{Future Work}
